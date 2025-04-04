@@ -1,25 +1,25 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Config } from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
 import tailwindPlugin from './plugins/tailwind-config.cjs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Polyproto',
+  title: 'polyproto',
   tagline: 'A Refreshingly simple decentralised chat plataform',
   favicon: 'img/logo.svg',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://polyproto.org',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'polyphony-chat', // Usually your GitHub org/user name.
+  projectName: 'polyproto-dot-org', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -88,10 +88,6 @@ const config: Config = {
               to: '/docs/intro',
             },
             {
-              label: 'Ask a Question on the Forum',
-              to: '/docs/intro',
-            },
-            {
               label: 'See a bug? File an issue!',
               to: 'https://github.com/polyphony-chat/polyproto-rs/issues',
             },
@@ -106,12 +102,8 @@ const config: Config = {
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Mastodon',
-              href: 'https://x.com/docusaurus',
-            },
+              href: 'https://discord.com/invite/m3FpcapGDD',
+            }
           ],
         },
       ],
