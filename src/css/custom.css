@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: "Satoshi";
+  font-style: normal;
+  font-weight: 200;
+  src: url("/fonts/Satoshi-Light.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Satoshi";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Satoshi-Regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Satoshi";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/Satoshi-Medium.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Satoshi";
+  font-style: normal;
+  font-weight: 800;
+  src: url("/fonts/Satoshi-Bold.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* spline-sans-mono-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Spline Sans Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/spline-sans-mono-v10-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* spline-sans-mono-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Spline Sans Mono";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/fonts/spline-sans-mono-v10-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+h1,
+h2,
+h3,
+span,
+p {
+  @apply font-body;
+}
+
+.title-container {
+  position: relative;
+  display: inline-block;
+}
+
+.title-shadow {
+  opacity: 0.1;
+  position: absolute;
+  top: -20px;
+  line-height: 1;
+  z-index: 1;
+}
+
+.title-main {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumbs {
+  @apply flex items-center;
+}
+
+.breadcrumbs__item:first-child::after {
+  margin-bottom: 6px;
+}
+
+.theme-code-block,
+.prism-code,
+.token {
+  font-family: "Spline Sans Mono" !important;
+}
+
+.anchor-shadow:hover {
+  box-shadow: 0 0 0px #e1f852, 0 0 2px #e1f852, 0 0 2px #e1f852,
+    0 0 20px #e1f852, 0 0 50px #e1f852;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .fade-in-right {
+    animation-name: fade-in-right;
+    animation-duration: 2s;
+  }
+}
+
+@media (min-width: 768px) {
+  .fade-in-left {
+    animation-name: fade-in-left;
+    animation-duration: 2s;
+  }
+}
+
+@media (max-width: 767px) {
+  .fade-in {
+    animation-name: fade-in;
+    animation-duration: 2s;
+  }
+
+  .fade-in-subtitle {
+    animation-name: fade-in;
+    animation-duration: 4s;
+  }
+}
+
+.theme-code-block-highlighted-line {
+  background-color: #dddfe1 !important;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-20%);
+  }
+}
+
+.wave {
+  animation: wave linear 3s infinite;
+}
+
+.cls-1 {
+  fill: #8e8ef4;
+}
+
+.cls-2 {
+  fill: #afaff9;
+}
+
+.cls-3 {
+  opacity: .95;
+}
+
+.cls-3, .cls-4 {
+  fill: #e1f852;
+}
