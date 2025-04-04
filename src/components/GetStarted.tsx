@@ -12,7 +12,7 @@ export function GetStarted(): JSX.Element {
           options={{
             height: 100,
             amplitude: 30,
-            speed: 0.2,
+            speed: 0.05,
             points: 12,
           }}
         />
@@ -24,8 +24,8 @@ export function GetStarted(): JSX.Element {
           className="-mb-2"
           options={{
             height: 100,
-            amplitude: 30,
-            speed: 0.15,
+            amplitude: 20,
+            speed: 0.1,
             points: 7,
           }}
         />
@@ -58,8 +58,8 @@ export function GetStarted(): JSX.Element {
             options={{
               height: 100,
               amplitude: 30,
-              speed: 0.2,
-              points: 14,
+              speed: 0.1,
+              points: 7,
             }}
           />
         </div>
@@ -71,7 +71,7 @@ export function GetStarted(): JSX.Element {
             options={{
               height: 100,
               amplitude: 30,
-              speed: 0.15,
+              speed: 0.1,
               points: 5,
             }}
           />

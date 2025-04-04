@@ -9,10 +9,10 @@ export function Contribute(): JSX.Element {
           fill="#e1f852"
           paused={false}
           options={{
-            height: 40,
-            amplitude: 60,
-            speed: 0.2,
-            points: 10,
+            height: 80,
+            amplitude: 30,
+            speed: 0.15,
+            points: 6,
           }}
         />
       </div>
@@ -23,7 +23,7 @@ export function Contribute(): JSX.Element {
           options={{
             height: 100,
             amplitude: 30,
-            speed: 0.2,
+            speed: 0.05,
             points: 5,
           }}
         />
