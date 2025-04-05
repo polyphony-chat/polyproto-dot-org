@@ -1,92 +1,96 @@
-import React, {type ReactNode} from 'react';
-import {useThemeConfig, ErrorCauseBoundary} from '@docusaurus/theme-common';
+import { ErrorCauseBoundary, useThemeConfig } from "@docusaurus/theme-common"
 import {
-  splitNavbarItems,
-  useNavbarMobileSidebar,
-} from '@docusaurus/theme-common/internal';
-import NavbarItem, {type Props as NavbarItemConfig} from '@theme/NavbarItem';
-import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
-import SearchBar from '@theme/SearchBar';
-import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
-import NavbarLogo from '@theme/Navbar/Logo';
-import NavbarSearch from '@theme/Navbar/Search';
+    splitNavbarItems,
+    useNavbarMobileSidebar,
+} from "@docusaurus/theme-common/internal"
+import NavbarLogo from "@theme/Navbar/Logo"
+import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
+import NavbarSearch from "@theme/Navbar/Search"
+import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem"
+import SearchBar from "@theme/SearchBar"
+import { type ReactNode } from "react"
 
-import styles from './styles.module.css';
-import { Anchor } from '@site/src/components/Anchor';
+import { Anchor } from "@site/src/components/Anchor"
 
 function useNavbarItems() {
-  // TODO temporary casting until ThemeConfig type is improved
-  return useThemeConfig().navbar.items as NavbarItemConfig[];
+    // TODO temporary casting until ThemeConfig type is improved
+    return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
-function NavbarItems({items}: {items: NavbarItemConfig[]}): ReactNode {
-  return (
-    <>
-      {items.map((item, i) => (
-        <ErrorCauseBoundary
-          key={i}
-          onError={(error) =>
-            new Error(
-              `A theme navbar item failed to render.
+function NavbarItems({ items }: { items: NavbarItemConfig[] }): ReactNode {
+    return (
+        <>
+            {items.map((item, i) => (
+                <ErrorCauseBoundary
+                    key={i}
+                    onError={(error) =>
+                        new Error(
+                            `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              {cause: error},
-            )
-          }>
-          <NavbarItem {...item} />
-        </ErrorCauseBoundary>
-      ))}
-    </>
-  );
+                            { cause: error }
+                        )
+                    }
+                >
+                    <NavbarItem {...item} />
+                </ErrorCauseBoundary>
+            ))}
+        </>
+    )
 }
 
 function NavbarContentLayout({
-  left,
-  right,
+    left,
+    right,
 }: {
-  left: ReactNode;
-  right: ReactNode;
+    left: ReactNode
+    right: ReactNode
 }) {
-  return (
-    <div className="navbar__inner max-w-7xl mx-auto text-xl">
-      <div className="navbar__items">{left}</div>
-      <div className="navbar__items navbar__items--right">{right}</div>
-    </div>
-  );
+    return (
+        <div className="navbar__inner max-w-7xl mx-auto text-xl">
+            <div className="navbar__items">{left}</div>
+            <div className="navbar__items navbar__items--right">{right}</div>
+        </div>
+    )
 }
 
 export default function NavbarContent(): ReactNode {
-  const mobileSidebar = useNavbarMobileSidebar();
+    const mobileSidebar = useNavbarMobileSidebar()
 
-  const items = useNavbarItems();
-  const [leftItems, rightItems] = splitNavbarItems(items);
+    const items = useNavbarItems()
+    const [leftItems, rightItems] = splitNavbarItems(items)
 
-  const searchBarItem = items.find((item) => item.type === 'search');
+    const searchBarItem = items.find((item) => item.type === "search")
 
-  return (
-    <NavbarContentLayout
-      left={
-        // TODO stop hardcoding items?
-        <>
-          {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
-          <NavbarLogo />
-          <NavbarItems items={leftItems} />
-        </>
-      }
-      right={
-        // TODO stop hardcoding items?
-        // Ask the user to add the respective navbar items => more flexible
-        <>
-          <Anchor className='px-6 !py-1 text-base' href='/docs/intro'>Docs</Anchor>
-          <NavbarItems items={rightItems} />
-          {/* <NavbarColorModeToggle className={styles.colorModeToggle} /> */}
-          {!searchBarItem && (
-            <NavbarSearch>
-              <SearchBar />
-            </NavbarSearch>
-          )}
-        </>
-      }
-    />
-  );
+    return (
+        <NavbarContentLayout
+            left={
+                // TODO stop hardcoding items?
+                <>
+                    {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
+                    <NavbarLogo />
+                    <NavbarItems items={leftItems} />
+                </>
+            }
+            right={
+                // TODO stop hardcoding items?
+                // Ask the user to add the respective navbar items => more flexible
+                <>
+                    <Anchor
+                        className="px-6 !py-1 text-base no-underline anchor-shadow transition ease-in-out duration-300"
+                        href="/docs/intro"
+                    >
+                        Docs
+                    </Anchor>
+                    <NavbarItems items={rightItems} />
+                    {/* <NavbarColorModeToggle className={styles.colorModeToggle} /> */}
+                    {!searchBarItem && (
+                        <NavbarSearch>
+                            <SearchBar />
+                        </NavbarSearch>
+                    )}
+                </>
+            }
+        />
+    )
 }
