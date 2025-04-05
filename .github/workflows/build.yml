@@ -1,35 +1,35 @@
 name: Build and run yarn project
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - "*"
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - "*"
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    build-and-deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: "yarn"
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: "yarn"
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
-      - name: Prettier check
-        run: npx install prettier && npx prettier . --check
+            - name: Prettier check
+              run: yarn add --dev --exact prettier && yarn exec prettier . --write
 
-      - name: Build project
-        run: yarn build
+            - name: Build project
+              run: yarn build
 
-      - name: Run project
-        run: yarn start &
+            - name: Run project
+              run: yarn start &
