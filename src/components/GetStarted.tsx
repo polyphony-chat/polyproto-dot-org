@@ -20,7 +20,22 @@ function EmojiParticles({ trigger }: { trigger: boolean }) {
     const [particles, setParticles] = useState<Particle[]>([])
     const intervalRef = useRef<NodeJS.Timeout | null>(null)
     const idCounter = useRef(0)
-    const emojis = ["✨", "🚀", "💫", "🌈", "🌀", "🐱", "🖥️", "⭐", "🪐"]
+    const emojis = [
+        "✨",
+        "🚀",
+        "💫",
+        "🌈",
+        "🌀",
+        "🐱",
+        "🖥️",
+        "⭐",
+        "🪐",
+        "💜",
+        "🩷",
+        "🗨️",
+        "😻",
+        "🏳️‍⚧️",
+    ]
 
     useEffect(() => {
         if (trigger) {
@@ -31,13 +46,13 @@ function EmojiParticles({ trigger }: { trigger: boolean }) {
                     // target offset: random value from -100 to 100
                     offsetX: Math.random() * 300 - 150,
                     offsetY: Math.random() * 300 - 150,
-                    delay: Math.random() * 0.1,
+                    delay: 0,
                     // initial spawn offset: random small displacement (so that they don't all spawn exactly in the center)
                     initialX: Math.random() * 150 - 75,
-                    initialY: Math.random() * 30 - 15,
+                    initialY: Math.random() * 60 - 30,
                 }
                 setParticles((prev) => [...prev, newParticle])
-            }, 500)
+            }, 100)
         } else {
             if (intervalRef.current) clearInterval(intervalRef.current)
             idCounter.current = 0
@@ -66,7 +81,7 @@ function EmojiParticles({ trigger }: { trigger: boolean }) {
                             x: initialX,
                             y: initialY,
                             opacity: 1,
-                            scale: 1,
+                            scale: 1.7,
                         }}
                         animate={{
                             x: initialX + offsetX,
@@ -172,7 +187,7 @@ export function GetStarted(): JSX.Element {
                                     </div>
                                 )}
                                 {/* Text */}
-                                <span className="inline-block transition-transform duration-500 ease-in-out group-hover:scale-110 bg-clip-text text-transparent bg-gradient-to-r from-[#b6acff] to-[#9e8efe]">
+                                <span className="inline-block transition-transform duration-500 ease-in-out group-hover:scale-110 bg-clip-text text-transparent bg-gradient-to-r from-[#b6acff] to-[#9e8efe] hover:text-yellow-100">
                                     explore
                                 </span>
                                 ?

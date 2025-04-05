@@ -30,6 +30,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-wavify": "^1.11.1",
+    "rehype-katex": "7",
+    "remark-math": "6",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {

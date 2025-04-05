@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # An Overview of polyproto
 
-:::danger "Work in Progress"
+:::warning "Work in Progress"
 
 This overview page is not yet finished. However, that what is there is already representative of
 what the polyproto protocol is about.
@@ -137,7 +137,7 @@ JSON over REST and other, already well established technologies such as WebSocke
 polyproto should be effortless - both for developers and for end users, who, ideally, should never have to
 notice any of the technical stuff going on in the background.
 
-## **Conclusion**
+## Conclusion
 
 This is just an outline about how polyproto works. The goal with this outline is to inform about the most
 relevant parts, while intentionally leaving out some details for the sake of clarity. If you have read

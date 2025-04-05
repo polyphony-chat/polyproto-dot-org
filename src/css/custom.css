@@ -231,7 +231,14 @@ h6 {
     fill: #e1f852;
 }
 
-a:not(.table-of-contents__link, .no-underline) {
+a:not(
+        .table-of-contents__link,
+        .no-underline,
+        .card,
+        .pagination-nav__link,
+        .menu__link,
+        .footer__link-item
+    ) {
     text-decoration-style: dotted;
     font-weight: bold;
     text-decoration: underline;
@@ -252,12 +259,13 @@ a:not(.table-of-contents__link, .no-underline) {
         lime,
         cyan,
         blue,
-        violet,
+        purple,
+        magenta,
         red
     );
     border-radius: 50%;
     filter: blur(20px) hue-rotate(0deg);
-    animation: hueRotate 6s linear infinite;
+    animation: hueRotate 3s linear infinite;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     pointer-events: none;

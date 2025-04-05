@@ -59,7 +59,7 @@ export function Contribute(): JSX.Element {
                                     <a
                                         target="_blank"
                                         className="text-poly-black text-lg flex items-center gap-3 md:text-xl hover:no-underline no-underline hover:text-poly-black hover:scale-105 transition ease-in-out duration-500 hover:drop-shadow-sm"
-                                        href="https://link"
+                                        href="/docs/contribute"
                                     >
                                         <ArrowRight className="size-5" />
                                         How and what to contribute
