@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Prettier check
+        run: npx install prettier && npx prettier . --check
+
       - name: Build project
         run: yarn build
 
