@@ -76,6 +76,7 @@ All software aiming to federate with other polyproto implementations must implem
 in the [API specification](https://apidocs.polyproto.org). Implementations can choose to extend the
 APIs with additional routes but must not remove or change the behavior of the routes defined in
 this specification.
+
 ### 3.1 `.well-known`
 
 `/.well-known/` locations facilitate the discovery of resources and services available on a given
@@ -119,6 +120,7 @@ try to verify the above-mentioned conditions. If all the above-mentioned conditi
 the client can treat the server located at the *actual domain name* as a polyproto server serving the
 *visible domain name*. Clients must not treat the server located at the *actual domain name* as a
 polyproto server serving the *actual domain name*.
+
 ### 3.2 WebSocket Protocol
 
 WebSockets enable real-time, bidirectional communication between actor clients and home servers.
@@ -165,6 +167,7 @@ end
 ```
 
 *Fig. 1: Sequence diagram of a WebSocket connection to a polyproto server.*
+
 #### 3.2.1 Gateway Event Payloads
 
 Gateway event payloads share a general structure, though the content of the `d` field varies depending
@@ -246,7 +249,7 @@ The "Hello" event is sent by the server to the client upon establishing a connec
 for a "Hello" event is an object containing a `heartbeat_interval` field, which specifies the interval
 in milliseconds at which the client should send heartbeat events to the server.
 
-:::example "Example hello event payload"
+:::tip[Example hello event payload]
 
 ```json
 {
@@ -270,7 +273,7 @@ in milliseconds at which the client should send heartbeat events to the server.
 The "identify" event is sent by the client to the server to let the server know which actor the
 client is.
 
-:::example "Example identify event payload"
+:::tip[Example identify event payload]
 
 ```json
 {
@@ -305,7 +308,7 @@ without having to initialize a separate WebSocket connection.
 
 A service channel event payload has the following structure:
 
-:::example "Example service channel event payload"
+:::tip[Example service channel event payload]
 
 ```json
 {
@@ -329,7 +332,7 @@ The server must respond with a `Service Channel ACK` event payload, indicating w
 was successful or not. Clients should expect that the server sends a `Service Channel` payload indicating
 the closing of a channel.
 
-:::example "Example service channel ACK event payload - failure"
+:::tip[Example service channel ACK event payload - failure]
 
 ```json
 {
@@ -347,7 +350,7 @@ the closing of a channel.
 
 :::
 
-:::example "Example service channel ACK event payload - success"
+:::tip[Example service channel ACK event payload - success]
 
 ```json
 {
@@ -380,7 +383,7 @@ The "New Session" event is sent by the server to all sessions except the new one
 of this event contains the ASCII-PEM encoded ID-Cert of the new session. You can find more information
 about the new session mechanism in [section 4.3](#43-protection-against-misuse-by-malicious-home-servers).
 
-:::example "Example new session event payload"
+:::tip[Example new session event payload]
 
 ```json
 {
@@ -406,7 +409,7 @@ to changes in actor certificates. This prevents clients and servers from accepti
 This event is only sent by servers if an [early revocation of an actor ID-Cert](#614-early-revocation-of-id-certs)
 occurs.
 
-:::example "Example actor certificate invalidation event payload"
+:::tip[Example actor certificate invalidation event payload]
 
 ```json
 {
@@ -435,7 +438,7 @@ When a client re-connects to a polyproto WebSocket gateway server, the client ma
 to the server instead of identifying. The resumed event sent by the server informs the client
 about everything the client has missed since their last active connection to the gateway.
 
-:::example "Example resume event structure"
+:::tip[Example resume event structure]
 
 ```json
 {
@@ -455,7 +458,7 @@ about everything the client has missed since their last active connection to the
 | `s`     | uint64 | Sequence number of the last event received by the client; aka. "Where to receive from".                               |
 | `token` | string | A [session token](#41-authentication) issued by the server, identifying the session the client wants to connect with. |
 
-:::example "Example "resumed" event"
+:::tip[Example "resumed" event]
 
 ```json
 {
@@ -501,7 +504,7 @@ A set of "relevant events" is a set of events which meet both of the following c
 2. The set must contain the lowest possible amount of events necessary for the client to be informed
    about everything that happened while they were disconnected.
 
-:::example "Example for condition #2"
+:::tip[Example for condition #2]
 
 Assume, that an event "total number of messages sent" exists. The value of this event
 payload is a number, representing the total number of messages sent on the entire server. Under
@@ -533,7 +536,7 @@ In this case, the request to resume is met with an appropriate [close code](#325
 The server certificate change event notifies clients about a new server ID-Cert. The `d` payload
 of this event contains the ASCII-PEM encoded ID-Cert of the server.
 
-:::example "Example server certificate change event payload"
+:::tip[Example server certificate change event payload]
 
 ```json
 {
@@ -576,7 +579,7 @@ $$
 [a,b]=\{x\in \mathbb {N} \mid a\leq x\leq b\}
 $$
 
-:::example "Minified number list"
+:::tip[Minified number list]
 
 ```json
 {
@@ -594,7 +597,7 @@ $$
 | `to`     | string         | The highest sequence number received this heartbeat interval                                                               |
 | `except` | array[string]? | Sequence numbers `x`, where \{$x \in \mathbb{N} \mid from\leq x\leq to\}$, that were not received this heartbeat interval. |
 
-:::example "Example heartbeat event payload"
+:::tip[Example heartbeat event payload]
 
 ```json
 {
@@ -613,7 +616,7 @@ $$
 
 A heartbeat ACK contains events that the client has re-requested as part of their heartbeat message.
 
-:::example "Example heartbeat ACK event payload"
+:::tip[Example heartbeat ACK event payload]
 
 ```json
 {
@@ -665,7 +668,7 @@ has been fulfilled. Of course, the client should not send the same heartbeat twi
 
 Heartbeat request events do not carry any data in their `d` payload.
 
-:::example "Example heartbeat request event payload"
+:::tip[Example heartbeat request event payload]
 
 ```json
 {
@@ -738,7 +741,7 @@ instead opt to query an API endpoint to receive events, which would normally be 
 connection. Concrete polyproto implementations and extensions can decide whether this alternative
 behavior is supported.
 
-:::example
+:::tip[Example]
 
 An example of an implementation context where having a constant WebSocket might not be wanted would
 be Urban IoT devices, or devices with a limited or only periodically available internet
@@ -783,7 +786,7 @@ Support for both versions 4 and 6 of the Internet Protocol (IPv4 and IPv6) is ma
 polyproto client and server software. Real-world availability of both versions of the Internet
 Protocol in polyproto should happen on a best-effort basis.
 
-:::example "Explanation"
+:::tip[Explanation]
 
 We do not mandate that access to a polyproto server must be possible over both IPv4 and IPv6
 as most of the world is not sufficiently IPv6 capable. We do, however, mandate that software
@@ -794,14 +797,14 @@ both versions of the Internet Protocol be available to the software at runtime.
 
 ### 3.6 Compression
 
-:::info "Unfinished"
+:::info[Unfinished]
 
 As of beta.1 of the polyproto protocol specification, this section is unfinished. Expect this
 section to receive content in future beta releases of the protocol spec.
 
 :::
 
-:::bug "TODO; Here's a TL;DR:"
+:::danger[TODO; Here's a TL;DR:]
 
 - zstd level 5-13 recommended for realtime
 - higher zstd levels recommended for events such as resumed etc.
@@ -821,7 +824,7 @@ Identity certificates defined in sections [#6. Cryptography and ID-Certs](#6-cry
 and [#6.1 Home server signed certificates for public client identity keys (ID-Cert)](#61-home-server-signed-certificates-for-public-client-identity-keys-id-cert)
 are employed to sign messages that the actor sends to other servers.
 
-:::note "Using one identity for several polyproto implementations"
+:::note[Using one identity for several polyproto implementations]
 
 An actor can choose to use the same identity for multiple polyproto implementations. Read
 [section #9](#9-services) for more information.
@@ -856,7 +859,7 @@ When successfully authenticated, a client receives a session token, which can th
 access authenticated routes on the REST API and to establish a WebSocket connection. Each ID-Cert
 can only have one active session token at a time.
 
-:::info "About session tokens"
+:::info[About session tokens]
 
 Session tokens are used to authenticate a user over a longer period of time, instead of for
 example, requiring the user to solve a challenge string every time they want to access a
@@ -877,7 +880,7 @@ for information on how this is done.
 
 #### 4.1.2 Sensitive actions
 
-:::bug
+:::danger[Deprecation notice]
 
 # Challenge strings will be removed soon.
 
@@ -915,7 +918,7 @@ Sensitive actions include, but are not limited to:
 HTTP API routes marked as sensitive actions require a header `X-P2-Sensitive-Solution`, where the
 header value represents the second factor of authentication chosen.
 
-:::example
+:::tip[Example]
 
 If the chosen second factor of authentication is TOTP, the value of this header is the current
 TOTP verification code. If the chosen second factor of authentication is a password, then the
@@ -986,7 +989,7 @@ end
 To protect users from misuse by malicious home servers, a mechanism is needed to prevent home
 servers from generating federation tokens for users without their consent and knowledge.
 
-:::example "Potential misuse scenario"
+:::tip[Potential misuse scenario]
 
 A malicious home server can potentially request a federation token on behalf of one of its
 users, and use it to generate a session token on the actor's behalf. The malicious server can
@@ -995,7 +998,7 @@ in the context of a chat application) sent on the other server.
 
 :::
 
-:::abstract
+:::note
 
 The above scenario is not unique to polyproto and rather a problem other federated
 services/protocols, like ActivityPub, have as well. There is no real solution to this problem.
@@ -1202,7 +1205,7 @@ The addition of a certificate is necessary to prevent a malicious foreign server
 identity key caching to impersonate an actor. Consider the following example, which employs foreign
 server public identity key caching but no home server-issued identity key certificates:
 
-:::example "Potential misuse scenario"
+:::tip[Potential misuse scenario]
 
 A malicious foreign server B can fake a message from Alice.
 (Home server: Server A) to Bob (Home Server: Server B), by generating a new identity key pair
@@ -1277,7 +1280,7 @@ of the key change, it must be informed of the change upon reconnection.
 
 #### 6.1.4 Early revocation of ID-Certs
 
-:::abstract "A note about CRLs"
+:::note[A note about CRLs]
 
 It is common for systems relying on X.509 certificates for user authentication to use Certificate
 Revocation Lists (CRLs) to keep track of which certificates are no longer valid. This is done to
@@ -1335,7 +1338,7 @@ revoking an ID-Cert are the same regardless of the server type.
 
 :::
 
-:::info "Revocation detection"
+:::info[Revocation detection]
 
 For information on how revocation detection is supposed to be handled, see [section 6.4](#64-caching-of-id-certs).
 
@@ -1380,7 +1383,7 @@ signatures and [weak public keys](https://en.wikipedia.org/wiki/Weak_key) must b
 
 :::
 
-::: example
+:::tip[Example]
 
 Say we have two actors. Alice, who is registered on Server A, and Bob, who is registered
 on Server B. Alice and Bob **are having a conversation on Server B**. Given a signed message from
@@ -1415,7 +1418,7 @@ b->>b: Verify signature of Alice's message (Fig. 4)
 
 :::
 
-:::abstract
+:::note
 
 You should read about the details of ID-Cert lookup load distribution via caching and why
 Bob should first try to request Alice's certificate from Server B instead of Alice's home
@@ -1474,7 +1477,7 @@ It is also recommended to back up the encrypted private identity keys in some ot
 The APIs for managing encrypted private identity keys are documented in the
 [API documentation](https://apidocs.polyproto.org).
 
-:::tip
+::::tip
 
 Actors can make use of the [migration APIs](#7-migrations) to reduce the number of ID-Certs/keys
 that they must hold on to to migrate their account in the future.
@@ -1500,7 +1503,7 @@ can introduce additional strategies to manage the number of "relevant" private k
 
 :::
 
-:::
+::::
 
 ### 6.4 Caching of ID-Certs
 
@@ -1514,9 +1517,9 @@ of ID-Certs for both home servers and clients.
 
 To make this section more understandable, we will bring back the example from section 6.2.1:
 
-:::quote "Revisiting the example scenario from section 6.2.1"
+::::note[Revisiting the example scenario from section 6.2.1]
 
-:::example
+:::tip[Example]
 
 Say we have two actors. Alice, who is registered on Server A, and Bob, who is registered
 on Server B. Alice and Bob **are having a conversation on Server B**. Given a signed message
@@ -1555,9 +1558,9 @@ In the case where `alice@server-a.example.com` and `bob@server-b.example.com` ar
 conversation where the communications server is any server other than `server-a.example.com`,
 Bob should request Alice's ID-Cert from that server first, instead of from `server-a.example.com`.
 
-:::
+::::
 
-:::abstract "Further notes on why we consider this cached distribution process a good idea"
+:::note[Further notes on why we consider this cached distribution process a good idea]
 
 Bob's client could request Alice's public identity key from Server A, instead of Server B.
 However, this is discouraged, as it
@@ -1588,7 +1591,7 @@ servers and clients. The TTL for a certificate's cache duration is dictated by t
 that certificate has been issued by. You can read more on that in
 [subsection 1 of this section](#641-verifying-that-a-newly-retrieved-id-cert-is-not-out-of-date).
 
-:::+ question "Why not select longer-lived TTLs for cached ID-Certs?"
+::::question[Why not select longer-lived TTLs for cached ID-Certs?]
 
 Suppose that an actor's private identity key is compromised. The actor notices this and revokes
 their ID-Cert. If the TTL of cached ID-Certs is too long, the compromised ID-Cert might still be
@@ -1596,7 +1599,7 @@ used for signature verification for a long amount of time, even after the ID-Cer
 This is a problem in the following hypothetical scenario with the malicious actor "Eve" and the
 victim "Alice":
 
-:::example "Downside of using higher values for a TTL"
+:::tip[Downside of using higher values for a TTL]
 
 1. One of Alice's private identity keys is compromised.
 2. Malicious actor Eve logs onto Server X, which Alice has never connected to before, using
@@ -1610,7 +1613,7 @@ victim "Alice":
 
 :::
 
-:::
+::::
 
 If the verification fails, Bob's client should try to re-request the key from Server B first.
 Should the verification fail again, Bob's client can try to request Alice's public identity key
@@ -1675,7 +1678,7 @@ low-resource home servers is a noble one, this goal must not undermine [P2s trus
 which other aspects of the protocol work very hard to uphold. Retrieving ID-Certs from a middleman
 introduces a new attack surface that must be mitigated. Consider the following example:
 
-:::+ example "Example attack abusing blind middleman trust"
+:::tip[Example attack abusing blind middleman trust]
 
 1. One of Alice's private identity keys is compromised.
 2. Malicious actor Eve logs onto a malicious Server X, which is controlled by Eve, impersonating
@@ -1724,7 +1727,7 @@ The resulting string is signed using the home servers private identity key.
 Clients must reject certificates of which the `cacheSignature` can not be verified to be
 correct.
 
-:::note "Note/Fun fact"
+:::note[Note/Fun fact]
 
 Note how the cache validity period is determined by the "original" home server and automatically
 propagated through—and respected by—every server and client caching the certificate. If another
@@ -1738,7 +1741,7 @@ Concatenation operations are not commutative.
 
 :::
 
-:::quote "Definition: Concatenation"
+:::note[Definition: Concatenation]
 
 > In formal language theory and computer programming, string concatenation is the operation of
 joining character strings end-to-end. For example, the concatenation of "snow" and "ball" is
@@ -1754,7 +1757,7 @@ identity key allows an actor to validate that a cached ID-Cert is both genuine a
 This technique remedies the possibility of caching introducing an additional attack vector, allowing
 caching to be used without conflicting with the [trust model](#2-trust-model) of polyproto.
 
-:::info "Scenarios requiring cache and validity verification"
+:::info[Scenarios requiring cache and validity verification]
 
 **Only** the following scenarios **must require** a server to retrieve, validate and supply invalidation
 and cache information about a foreign actor's ID-Cert:
@@ -1767,7 +1770,7 @@ and cache information about a foreign actor's ID-Cert:
 
 :::
 
-:::info "Scenarios **not** requiring cache and validity verification"
+:::info[Scenarios **not** requiring cache and validity verification]
 
 The following scenarios **must explicitly not require** a server to retrieve, verify or supply invalidation
 and cache information about a foreign actor's ID-Cert:
@@ -1845,7 +1848,7 @@ or all of their messages with them. Which messages can be moved is up to P2 exte
 as it might not always be possible to move all messages. Some messages might be tied to a
 specific context, which is unavailable on the new server.
 
-:::example "Example: Information tied to a specific context"
+:::tip[Example: Information tied to a specific context]
 
 In a chat application, there might exist a group chat with a lot of people in it. Moving your
 messages from this group chat to another server might be impossible, depending on the architecture
@@ -1857,7 +1860,7 @@ possible in these cases.
 
 <a name="example-static-information" id="example-static-information"></a>
 
-:::example "Example: Information not necessarily tied to a specific context"
+:::tip[Example: Information not necessarily tied to a specific context]
 
 Continuing the chat application example, it might very well be possible to move messages
 written in a private chat between two actors from one server to another. An exemplary
@@ -2147,7 +2150,7 @@ Moving data from one server to another might break references to this data. To p
 as possible, resource addressing with relative roots is recommended for data behind an additional
 layer of indirection.
 
-:::example
+:::tip[Example]
 
 In a chat service, a user might have posted a message containing a picture. In this example, the
 picture is stored on the user's home server, which is not necessarily the same server as the
@@ -2205,7 +2208,7 @@ folder named `rawr`. This folder contains all RawR content uploaded by the actor
 The files in this folder are named after the resource ID given to the resource.
 File extensions are only added if they were known to the server.
 
-:::example
+:::tip[Example]
 
 An example file name might be
 `2c851bfb6daffa944fa1723c7bd4d362ffbc9defe292f2daaf05e895989d179b.jxl`, referencing the file
@@ -2219,7 +2222,7 @@ the file is structured as an array containing objects. Each object has a key tha
 to the resource ID of a resource in the `rawr` directory and a value that is an object
 representing the access properties. An example of the contents of this file is given below:
 
-:::+ example "Example of an `access_properties.p2al` file"
+:::tip[Example of an `access_properties.p2al` file]
 
 ```json
 [
@@ -2265,7 +2268,7 @@ with the new signature is created, preserving the old message.
 Implementations and protocol extensions should carefully consider the extent of messages that can be
 re-signed.
 
-:::example
+:::tip[Example]
 
 In the case of a social media platform with quote-posting functionality, it is reasonable to
 assume that re-signing a quoted post is allowed. However, this would likely change the
@@ -2392,7 +2395,7 @@ would be better suited as an implementation-specific detail.
 If possible for the given use case, P2 extensions should depend on and extend already existing,
 officially endorsed P2 extensions.
 
-:::example
+:::tip[Example]
 
 Say, you are developing a social chat platform using polyproto. In this example, you would like
 your chat platform to have a feature, which is not part of the officially endorsed
@@ -2437,7 +2440,7 @@ The discoverability feature allows users who are registered with the same servic
 servers to communicate with each other. The actor initiating the communication only needs to know the
 federation ID of the actor they want to communicate with. Consider the following example:
 
-:::example "Example: Discovering services"
+::::tip[Example: Discovering services]
 
 :::info
 
@@ -2476,7 +2479,7 @@ the exemplary polyproto-chat service.*
 The example demonstrates how Alice can communicate with Bob, even though they do not share any
 servers.
 
-:::
+::::
 
 To be discoverable, an actor must add a key-value pair to their home server's database. The
 key is the name of the service, and the value is the base URL of the server hosting the service.
