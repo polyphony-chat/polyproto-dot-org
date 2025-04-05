@@ -1,6 +1,6 @@
-import React, { type ReactNode } from "react";
-import clsx from "clsx";
 import type { Props } from "@theme/Footer/Layout";
+import clsx from "clsx";
+import { type ReactNode } from "react";
 
 export default function FooterLayout({
   style,
@@ -24,7 +24,7 @@ export default function FooterLayout({
         )}
       </div>
       <div className="bg-poly-green-1 w-full h-20 flex items-center justify-center">
-        <span className="text-sm">Copyright © 2025 Polyproto, Inc. All rights reserved.</span>
+        <span className="text-sm">Copyright © 2025 The polyproto Contributors.</span>
       </div>
     </footer>
   );

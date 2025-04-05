@@ -69,9 +69,9 @@ const config: Config = {
     },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Polyproto',
+      title: 'polyproto',
       logo: {
-        alt: 'Polyproto Logo',
+        alt: 'polyproto Logo',
         src: 'img/logo.svg',
       },
       items: [
