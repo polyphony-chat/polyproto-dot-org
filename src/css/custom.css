@@ -231,8 +231,47 @@ h6 {
     fill: #e1f852;
 }
 
-a:not(.table-of-contents__link) {
+a:not(.table-of-contents__link, .no-underline) {
     text-decoration-style: dotted;
     font-weight: bold;
     text-decoration: underline;
+}
+
+.rainbow-ring::before {
+    content: "";
+    position: absolute;
+    top: -0%;
+    left: -10%;
+    width: 110%;
+    height: 110%;
+    background: conic-gradient(
+        from 0deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        violet,
+        red
+    );
+    border-radius: 50%;
+    filter: blur(20px) hue-rotate(0deg);
+    animation: hueRotate 6s linear infinite;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none;
+}
+
+.group:hover .rainbow-ring::before {
+    opacity: 0.9;
+}
+
+@keyframes hueRotate {
+    from {
+        filter: blur(10px) hue-rotate(0deg);
+    }
+    to {
+        filter: blur(10px) hue-rotate(360deg);
+    }
 }
