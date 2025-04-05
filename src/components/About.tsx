@@ -42,7 +42,7 @@ export function About(): JSX.Element {
               </h2>
               <h2 className="text-4xl md:text-5xl font-bold text-poly-black">
                 What{" "}
-                <span className="text-4xl md:text-5xl font-bold text-poly-indigo-1 inline-block w-auto title-main ease-out transform hover:scale-105 transition duration-500">
+                <span className="text-4xl md:text-5xl font-bold text-poly-indigo-1 inline-block w-auto title-main hover:drop-shadow-[0_15px_15px_rgba(139,118,255,1)] transition ease-in-out duration-150">
                   polyproto
                 </span>{" "}
                 is all about?
@@ -61,7 +61,7 @@ export function About(): JSX.Element {
             <div className="flex items-center justify-center lg:justify-start">
             <Anchor
               href="/docs/intro"
-              className="w-72 mt-10 border-black text-xl"
+              className="w-72 mt-10 border-black text-xl uppercase anchor-shadow transition ease-in-out duration-300"
             >
               learn more
             </Anchor>

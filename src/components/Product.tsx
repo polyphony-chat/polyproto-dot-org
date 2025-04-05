@@ -6,7 +6,7 @@ export function Product(): JSX.Element {
           <div className="grid grid-cols-4 md:grid-cols-12">
             <div className="col-start-1 col-span-10 md:col-start-3 md:col-span-8 md:pt-20">
               <h2 className="text-4xl md:text-5xl font-bold text-center text-poly-black">
-                Because Polyproto is different
+                Not just different. Better!
               </h2>
             </div>
           </div>
@@ -19,7 +19,7 @@ export function Product(): JSX.Element {
                     data-name="Capa 2"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 200.12 212.54"
-                    className="w-24 md:w-32"
+                    className="w-24 md:w-32 anchor-shadow transition ease-in-out duration-300"
                   >
                     <g id="Capa_1-2" data-name="Capa 1">
                       <g>
@@ -81,12 +81,12 @@ export function Product(): JSX.Element {
                   </svg>
                 </div>
                 <h2 className="text-poly-black text-xl font-bold pt-10">
-                  <span className="text-poly-black">Your Digital Home,</span>
-                  <span className="text-poly-indigo-1"> Always With You</span>
+                  <span className="text-poly-black">Your digital home,</span>
+                  <span className="text-poly-indigo-1"> wherever you go.</span>
                 </h2>
                 <p className="text-poly-black text-lg pt-4 md:pt-6 xl:w-96 md:max-w-96 md:pr-8">
-                  Allows you to change your home server at any point in time
-                  while making sure that your data comes with you
+                  Switch home servers even if your home server is offline, while
+                  making sure that your data stays in your control.
                 </p>
               </div>
             </div>
@@ -98,7 +98,7 @@ export function Product(): JSX.Element {
                     data-name="Capa 2"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 200.12 212.54"
-                    className="w-24 md:w-32"
+                    className="w-24 md:w-32 anchor-shadow transition ease-in-out duration-300"
                   >
                     <g id="Capa_1-2" data-name="Capa 1">
                       <g>
@@ -150,7 +150,8 @@ export function Product(): JSX.Element {
                   Messages
                 </h2>
                 <p className="text-poly-black text-lg pt-6 lg:w-96 max-w- h-[108px]">
-                Produces tamper-resistant data/messages through the use of signatures
+                Produces tamper-resistant data/messages through the use of signatures. Trust, that
+                what you see has not been altered along the way.
                 </p>
               </div>
             </div>

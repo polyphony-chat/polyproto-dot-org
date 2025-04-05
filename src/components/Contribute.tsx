@@ -32,16 +32,16 @@ export function Contribute(): JSX.Element {
         <div className="bg-poly-green-2 grid grid-cols-10 md:grid-cols-12 h-full max-w-7xl px-4 mx-auto place-items-center">
           <div className="col-start-1 col-span-10 md:col-start-3 md:col-span-8">
             <h2 className="text-4xl md:text-5xl font-bold text-poly-black text-center">
-              Network of Creators
+              Join the network of creators
             </h2>
             <h2 className="text-2xl md:text-4xl text-poly-black pt-2 md:text-center">
               Contributions are always welcome!
             </h2>
             <div className="flex flex-col items-end mt-10 md:gap-8 md:flex-row md:justify-between">
               <p className="text-poly-black text-lg text-right">
-                Develops{" "}
+                Develop{" "}
                 <span className="text-poly-black font-bold">
-                  for or with Polyproto.
+                  for or with polyproto.
                 </span>
               </p>
               <div className="flex border-b border-poly-black w-44 md:w-auto">

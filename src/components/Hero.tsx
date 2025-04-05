@@ -9,8 +9,8 @@ export function Hero(): JSX.Element {
           <div className="grid grid-cols-12 fade-in md:py-0">
             <div className="col-start-1 col-end-13 md:col-span-8 fade-in-left">
               <h3 className="text-center text-poly-green-1 text-lg md:text-2xl md:text-left xl:text-3xl fade-in-subtitle">
-                A Refreshingly simple <br />
-                decentralised chat plataform
+                A refreshingly simple <br />
+                decentralised, federated protocol
               </h3>
               <h2 className="text-white text-center text-[2.70rem] font-bold md:text-left md:text-[4.1rem] lg:text-[5.5rem] xl:text-[7rem]">
                 Transforming

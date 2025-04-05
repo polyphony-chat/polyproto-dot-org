@@ -36,15 +36,15 @@ export function GetStarted(): JSX.Element {
             <h2 className="text-center text-4xl md:text-5xl font-bold text-poly-white">
               Ready to{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b6acff] to-[#9e8efe]">
-                get started
+                explore
               </span>
               ?
             </h2>
             <Anchor
               href="/docs/intro"
-              className="uppercase font-semibold  md:!px-10 bg-poly-green-2 border-poly-green-2 !text-poly-black text-xl md:text-2xl w-[70%]"
+              className="uppercase font-semibold  md:!px-10 bg-poly-green-2 border-poly-green-2 !text-poly-black text-xl md:text-2xl w-[70%] anchor-shadow transition ease-in-out duration-300"
             >
-              Get Started
+              Learn more
             </Anchor>
           </div>
         </div>
