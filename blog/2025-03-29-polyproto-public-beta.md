@@ -30,7 +30,7 @@ looking into the topic for a bit, the following became clear:
 - People do not want all their stuff to be gone if their home server says "buh-bye" for
   any reason. Account portability is a must.
 
-!!! info "About ATProto"
+:::info "About ATProto"
 
     When I started working on polyproto over a year ago, ATProto was already known to me, but it
     was nowhere near as complete as it is now. In fact, one ATProto developer had this to say at

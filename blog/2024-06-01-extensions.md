@@ -23,7 +23,7 @@ authenticated on, your client needs to know exactly what that HTTP request has t
 is nothing new. One take on a solution for this problem stems from the people working on the
 ATProtocol, who created [Lexicon](https://atproto.com/guides/lexicon). From the atproto website:
 
-!!! quote "Lexicon TL;DR"
+:::quote "Lexicon TL;DR"
 
     Lexicon is a global schema system. It uses reverse-DNS names like "`com.example.ping()`". The
     definitions are JSON documents, similar to JSON-Schema. It's currently used for HTTP endpoints,
@@ -83,7 +83,7 @@ documentation having to be read and written.
 
 If you are a developer, you might ask yourself:
 
-!!! question
+:::question
 
     Implementing common chat behaviour sounds cool in terms of intercompatibility, but doesn't this
     limit what I can do with my application? I have planned for a cool feature X to exist in my chat
@@ -96,7 +96,7 @@ can be treated as clients with a reduced feature set in this case. What is cruci
 that the additional features do not prohibit "reduced feature set clients" from using the behavior
 described in the extension, if any sort of federation or interoperability is wanted.
 
-!!! example "What works"
+:::tip[Example: What works]
 
     In your implementation of a chat service, users can send each other messages with special
     effects, such as fireworks, confetti and similar. A different implementation of polyproto-chat
@@ -104,7 +104,7 @@ described in the extension, if any sort of federation or interoperability is wan
     text contents, send replies to the message, and do all sorts of other things as described in
     this hypothetical polyproto-chat extension.
 
-!!! example "What doesn't work"
+:::tip[Example: What doesn't work]
 
     In your implementation of a chat service, users can send each other messages with special effects,
     such as fireworks, confetti and similar. Your implementation requires every client to send

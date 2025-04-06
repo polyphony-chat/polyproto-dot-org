@@ -16,7 +16,7 @@ easier.
 
 {/* truncate */}
 
-!!! quote "Authors' note"
+:::quote "Authors' note"
 
     Before knowing and reading about the X.500- and PKCS-series of RFCs, I legitimately thought,
     that implementing an own certificate standard for polyproto would be a good idea! Looking back,
@@ -58,7 +58,7 @@ If servers and clients have well-implemented cryptography, it should be *extreme
 not impossible - for non-quantum-based, non-supercomputer-cluster home servers to alter
 the contents of a message before passing them on to the recipient.
 
-!!! quote "Authors note"
+:::quote "Authors note"
 
     :nerd: Technically, polyproto and X.509 absolutely support Post-Quantum Hybrid Digital
     Signatures. If these Hybrid Digital Signatures use well-made Post-Quantum Signature schemes
@@ -120,7 +120,7 @@ graph LR
     C --> F([Leaf Certificate 2])
 ```
 
-!!! example
+:::tip[Example]
 
     To trust `Leaf Certificate 1`, one would have to also trust the certificates held by the
     `Middleman CA`, `CA 1` and the `Root CA`.
@@ -138,7 +138,7 @@ of centralization, as the control one CA can have over the entire network is lim
 All of these factors combined should always make developing or hosting your own home server a
 viable option.
 
-!!! quote "Authors note"
+:::quote "Authors note"
 
     To clarify, this does not mean that polyproto servers will only be able to handle a small amount
     of users, or that polyproto is designed for small-userbase scenarios. A well-implemented

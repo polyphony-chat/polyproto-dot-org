@@ -92,7 +92,7 @@ So yeah - it's been almost a year now! And not a lazy one for me, either.
 
 ![bitfl0wer's (mine) commit graph for the past year. A lot of green squares, signalling a lot of commits/activity that has been made. The text above the graph reads: "2,858 contributions in the last year"](./media/2024-03-05-commit_graph.png)
 
-!!! warning "Content warning"
+:::warning "Content warning"
 
     The following paragraph covers the topics of anxiety and depression. If you would not like to read about this, feel free to
     scroll down until you see a big green box with a check mark. The box indicates that it is safe for you to read again!
@@ -114,7 +114,7 @@ But one hour of therapy a week can sadly only do *so* much. This is why I, with 
 (particularly my lovely, lovely girlfriend) and my therapist, have decided to admit myself into a mental health clinic that specializes
 in the treatment of depression, anxiety disorders and the like.
 
-!!! success "Safety checkpoint reached!"
+:::success "Safety checkpoint reached!"
 
     It's now over! :)
 
@@ -129,7 +129,7 @@ my life, including Polyphony.
 
 If you're reading this on or after March 20th, then see you on the other side :) I hope the grass is greener there!
 
-!!! quote "BEGPOSTING ON MAIN"
+:::quote "BEGPOSTING ON MAIN"
 
     I am lucky and extremely privileged to have been growing up in Germany, a country with a (mostly) functioning social welfare system and universal health care.
     If this wasn't the case, I'd likely be absolutely unable to afford to put myself into such good care. Germany doesn't pay for everything though, and the

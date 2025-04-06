@@ -59,7 +59,7 @@ Fundamentally, the process of migrating an account in polyproto relies mostly on
 rather than moving data around. This works best in scenarios where data is highly distributed, and
 not stored in a central location.
 
-!!! example
+:::tip[Example]
 
     This might be the case in a social chat messaging system
     similar to Discord, where messages are stored on the servers of the people hosting the chat rooms.
@@ -77,7 +77,7 @@ When you want to move your account from one server to another, you:
 If applicable, your friends and followers will also be notified about the move, keeping
 existing relationships intact.
 
-!!! note
+:::note
 
     This entire process does not rely on the old server being online.
     This means that the process can be completed even if the old server is down, or if the old server
