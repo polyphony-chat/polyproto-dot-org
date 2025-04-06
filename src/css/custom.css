@@ -129,11 +129,11 @@ h6 {
 
 .anchor-shadow:hover {
     box-shadow:
-        0 0 0px #e1f852,
-        0 0 2px #e1f852,
-        0 0 2px #e1f852,
-        0 0 20px #e1f852,
-        0 0 50px #e1f852;
+        0 0 0px #ff2058,
+        0 0 2px #ff2058,
+        0 0 2px #ff2058,
+        0 0 20px #ff2058,
+        0 0 50px #ff2058;
 }
 
 @keyframes fade-in {
@@ -228,7 +228,7 @@ h6 {
 
 .cls-3,
 .cls-4 {
-    fill: #e1f852;
+    fill: #ff2058;
 }
 
 a:not(

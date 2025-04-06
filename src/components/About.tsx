@@ -34,18 +34,18 @@ export function About(): JSX.Element {
           <div className="md:col-start-2 col-span-10 lg:col-span-5">
             <div className="title-container">
               <h2 className="md:text-6xl lg:text-7xl lg:inline hidden font-bold text-poly-indigo-1 title-shadow w-[700px]">
-                What{" "}
+                What is{" "}
                 <span className="md:text-6xl lg:text-7xl lg:inline md:inline hidden font-bold text-poly-indigo-1 w-auto">
                   polyproto
                 </span>{" "}
-                is <br /> all about?
+                <br /> all about?
               </h2>
               <h2 className="text-4xl md:text-5xl font-bold text-poly-black">
-                What{" "}
+                What is{" "}
                 <span className="text-4xl md:text-5xl font-bold text-poly-indigo-1 inline-block w-auto title-main hover:drop-shadow-[0_15px_15px_rgba(139,118,255,1)] transition ease-in-out duration-150">
                   polyproto
                 </span>{" "}
-                is all about?
+                all about?
               </h2>
             </div>
             <div className="mt-10 md:col-start-2 col-span-10 lg:mt-0 lg:col-start-7 lg:col-span-6 lg:hidden">
@@ -59,17 +59,17 @@ export function About(): JSX.Element {
               has shut down ages ago.
             </p>
             <div className="flex items-center justify-center lg:justify-start">
-            <Anchor
-              href="/docs/intro"
-              className="w-72 mt-10 border-black text-xl uppercase anchor-shadow transition ease-in-out duration-300"
-            >
-              learn more
-            </Anchor>
+              <Anchor
+                href="/docs/intro"
+                className="w-72 mt-10 border-black text-xl uppercase anchor-shadow transition ease-in-out duration-300"
+              >
+                learn more
+              </Anchor>
             </div>
           </div>
           <div className="mt-20 md:col-start-2 col-span-10 lg:mt-0 lg:col-start-7 lg:col-span-6 hidden lg:grid">
             <div className="flex items-center">
-            <img className="w-full" src="img/Capa_1.png" alt="" />
+              <img className="w-full" src="img/Capa_1.png" alt="" />
             </div>
           </div>
         </div>
