@@ -13,7 +13,7 @@ title: Work on polyproto and a "vacation" ⛱️
 In this little update post I write about what I've done in the last couple of weeks alongside talking about taking just a little break
 (don't worry, y'all are not getting rid of me!)
 
-<!-- more -->
+{/* truncate */}
 
 It's been more or less two weeks since the last post - time for the next one!
 
@@ -90,7 +90,7 @@ the project I have worked on the longest for, out of all of my personal projects
 
 So yeah - it's been almost a year now! And not a lazy one for me, either.
 
-![bitfl0wer's (mine) commit graph for the past year. A lot of green squares, signalling a lot of commits/activity that has been made. The text above the graph reads: "2,858 contributions in the last year"](../media/2024-03-05-commit_graph.png)
+![bitfl0wer's (mine) commit graph for the past year. A lot of green squares, signalling a lot of commits/activity that has been made. The text above the graph reads: "2,858 contributions in the last year"](./media/2024-03-05-commit_graph.png)
 
 !!! warning "Content warning"
 
@@ -136,6 +136,6 @@ If you're reading this on or after March 20th, then see you on the other side :)
     train rides to and from the clinic will likely be expensive for me, as will the 10€ daily fee for staying at a clinic (capped at 280€).
 
     I can currently afford this without financially ruining myself, so don't worry about that. However, this whole endeavour will take a good chunk out
-    of my current savings. Thus, if you'd like to [donate to my ko-fi](https://ko-fi.com/bitfl0wer) to help me cover the costs, it would mean a lot to me! <3
+    of my current savings. Thus, if you'd like to [donate to my ko-fi](https://ko-fi.com/bitfl0wer) to help me cover the costs, it would mean a lot to me! \<3
 
     Please only do so if you are in a stable financial standing yourself, though. As I said, with or without tips, I'll manage. :)

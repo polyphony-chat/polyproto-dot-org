@@ -14,7 +14,7 @@ This blog post covers a bit about how and why X.509 is used in polyproto, and ho
 the process of implementing your own server and incorporating it into an existing network a little
 easier.
 
-<!-- more -->
+{/* truncate */}
 
 !!! quote "Authors' note"
 
@@ -34,7 +34,7 @@ core. X.509 was chosen over `OpenPGP` because of its comparative simplicity. The
 `OpenPGP` often requires active user input to assign trust levels to users and their keys, which is
 not inline with our ideas and goals for user experience in a decentralized system.
 Ideally, decentralization and federation is as seamless as possible for the end-user,
-and X.509 with its Certificate Authority (CA for short) model is the better fit for such a goal. 
+and X.509 with its Certificate Authority (CA for short) model is the better fit for such a goal.
 In fact, X.509 can be *so* seamless to the end-user, that you have probably forgotten that you are
 already using it right now!
 
@@ -90,7 +90,7 @@ using this certificate.
 
 Root Certificates in the context of HTTPS and the modern, SSL/TLS protected web are a big source
 of centralization. This centralization might be necessary to a degree, but it inevitably means less
-plurality, and way more hoops to jump through, should you also want to be a CA. 
+plurality, and way more hoops to jump through, should you also want to be a CA.
 
 To give context for those who might need it, essentially, every certificate for every website out
 there has to be able to be traced back to one of the root certificates installed on your
@@ -149,7 +149,7 @@ viable option.
     However, real-life power distribution scenarios can be be unpredictable, which
     means that the efficacy of limiting the certificate path length as a measure to prevent
     centralization can only be proven when polyproto is being deployed in the real world.
-    
+
 ---
 
 If you have any questions or feedback, feel free to reach out to me via email, where you can

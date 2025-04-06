@@ -1,5 +1,5 @@
 ---
-draft: false 
+draft: false
 date: 2023-08-17
 categories:
   - chorus
@@ -12,7 +12,7 @@ authors:
 
 Introducing self-updating structs, explaining how they work, and what they are good for. Also, moving blog posts to GitHub, and other improvements.
 
-<!-- more -->
+{/* truncate */}
 
 It has been a while since the last update post - 1 month to be precise! I haven't gotten around to writing one of these, mostly because of personal time- and energy constraints. However, now that these resources are finally replenishing again, I figured that it is once again time!
 

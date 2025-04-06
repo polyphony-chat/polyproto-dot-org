@@ -13,7 +13,7 @@ polyproto is a new federation protocol. Its main focus is enabling seamless part
 actor on many different servers. The core specification lacks routes for sending any sort of user
 generated data anywhere, though. What is up with that?
 
-<!-- more -->
+{/* truncate */}
 
 ## To federate is to be familiar
 
@@ -103,7 +103,7 @@ described in the extension, if any sort of federation or interoperability is wan
     is unlikely to see these special effects on their end. However, they can still see the messages'
     text contents, send replies to the message, and do all sorts of other things as described in
     this hypothetical polyproto-chat extension.
-		
+
 !!! example "What doesn't work"
 
     In your implementation of a chat service, users can send each other messages with special effects,
@@ -113,7 +113,7 @@ described in the extension, if any sort of federation or interoperability is wan
     polyproto-chat clients, these clients will not be able to send any messages to servers running
     your chat software. This conflicts with the behaviour required by the polyproto-chat extension
     and is therefore unacceptable.
-		
+
 Also keep in mind that through clever engineering, it might be possible to write adapters for
 behavior, which should be required in your implementation and conflicts with the base extension.
 Picking up the "What doesn't work" example again, the implementer could simply "translate" message

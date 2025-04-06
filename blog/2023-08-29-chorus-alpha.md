@@ -12,7 +12,7 @@ authors:
 
 We are alpha now! As of 2 days ago, the first Alpha of Chorus, Version 0.1.0, has been released for everyone to look at and use on crates.io!
 
-<!-- more -->
+{/* truncate */}
 
 So, is the library complete now? No. And yes! It's, well, complicated... Let me explain!
 

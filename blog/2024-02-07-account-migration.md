@@ -1,5 +1,5 @@
 ---
-draft: false 
+draft: false
 date: 2024-02-07
 categories:
   - polyproto
@@ -12,7 +12,7 @@ Account migration is an important and difficult thing to get right in federated 
 post, I will outline how I imagine account migration to work in polyproto, and what benefits this
 approach brings.
 
-<!-- more -->
+{/* truncate */}
 
 # Account migration in polyproto
 
@@ -32,7 +32,7 @@ and it is not just a problem with Mastodon, but with many other federated system
 
 ## How polyproto works, briefly
 
-In polyproto, your federation ID, e.g. `xenia@example.com`, is what identifies you. If you want to 
+In polyproto, your federation ID, e.g. `xenia@example.com`, is what identifies you. If you want to
 use this identity on a client, your client will generate a key pair for a certificate signing request,
 and send this request to your home server. Given that you didn't provide any invalid data, your home
 server will sign the certificate, and send it back to you.
@@ -49,7 +49,7 @@ This means:
 - Anyone can verify that the data was not tampered with by anyone else
 - Everybody can verify that you are who you say you are
 
-This is even true when you are sending data to a different server than your home server. 
+This is even true when you are sending data to a different server than your home server.
 
 ## Migrating an account on polyproto
 
@@ -72,7 +72,7 @@ When you want to move your account from one server to another, you:
 4. Last but not least, you verify to the servers storing your data that you are the same person as
   the one who created the old account. The servers then update the data ownership to your new account.
   This is done by using your old private key(s), in a way that does not reveal your private key(s) to
-  anyone else. 
+  anyone else.
 
 If applicable, your friends and followers will also be notified about the move, keeping
 existing relationships intact.
@@ -81,8 +81,8 @@ existing relationships intact.
 
     This entire process does not rely on the old server being online.
     This means that the process can be completed even if the old server is down, or if the old server
-    is not cooperating with the user. 
-    
+    is not cooperating with the user.
+
     However, including the homeserver in the process adds to the
     general user experience. If you, for example, have included your federation ID as part of another,
     non-polyproto social media profile, the old server can automatically refer people to the new account.
@@ -96,7 +96,7 @@ if the centralization of data is higher, the migration process is extended by a 
 2. The old home server sends you a data export. Your client will check the signatures on the exported
    data, to make sure that the data was not tampered with.
 3. You then import the data into your new account on the new home server.
-4. 
+4.
 
 ## Conclusion
 
@@ -105,11 +105,11 @@ anything that is not already part of the normal usage of the system. The process
 as it relies on the cryptographic properties of X.509 certificates, and also works across a highly
 distributed data model, which, in my opinion, is how the internet *should* be.
 
-The biggest drawback to this approach is that there are a whole lot of web requests involved. 
+The biggest drawback to this approach is that there are a whole lot of web requests involved.
 Depending on the amount of data, this can take some minutes or possibly even hours.
 
 It is also worth noting that all of this does not require any new or young technology. polyproto
-relies on [X.509 certificates](https://en.wikipedia.org/wiki/X.509), which have been around for a 
+relies on [X.509 certificates](https://en.wikipedia.org/wiki/X.509), which have been around for a
 long time, and are widely used in many different applications. This means that the technology is
 well understood, and that there are already many great tools in all sorts of programming languages
 available to work with it. From my point of view, there is no need to reinvent the wheel.

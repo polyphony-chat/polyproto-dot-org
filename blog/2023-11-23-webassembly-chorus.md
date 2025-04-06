@@ -1,5 +1,5 @@
 ---
-draft: false 
+draft: false
 date: 2023-11-23
 categories:
   - chorus
@@ -13,7 +13,7 @@ authors:
 
 What the current state of GUI libraries in Rust means for Polyphony and chorus, and why we are porting chorus to WebAssembly.
 
-<!-- more -->
+{/* truncate */}
 
 Hi all!
 

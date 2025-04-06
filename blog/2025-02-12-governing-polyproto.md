@@ -10,7 +10,7 @@ title: Governing polyproto
 
 There's precedence which suggests that governing federated software as a one-man-band is a bad idea. This begs the question: How would polyproto be governed?
 
-<!-- more -->
+{/* truncate */}
 
 ## I am in a somewhat interesting situation.
 

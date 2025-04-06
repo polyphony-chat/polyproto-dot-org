@@ -15,7 +15,7 @@ grant program that funds projects that align with their goals. On behalf of Poly
 polyproto project, I have submitted an application for a grant of 10,000€ from the NLnet foundation
 in their funding round of October 2024.
 
-<!-- more -->
+{/* truncate */}
 
 Should we be successful in our application, the grant will be used to fund the development of the
 Polyphony and polyproto projects, which would rapidly increase the development velocity of both
@@ -93,7 +93,7 @@ This would total to $7700 or $9700, depending on whether the lower or higher est
 Additionally, I would like to extend the domains polyphony.chat and polyproto.org for some years using the funding and top up our prepaid E-Mail
 server hosted at https://uberspace.de/en/. The domain and the E-Mail server make up most of our current operating costs, ranging between 7-12$ a month.
 This might not sound like a lot in the grand scheme of things, but I am currently paying for these out of my own pocket as an undergraduate with
-little income, so being able to potentially reduce monthly expenses is a nice prospect. 
+little income, so being able to potentially reduce monthly expenses is a nice prospect.
 
 We currently have and have never had additional/other sources of funding. Receiving funding from NLNet would thus be our first source of funding.
 
@@ -126,26 +126,26 @@ polyproto is actively trying to circumvent this by limiting polyproto extensions
 - either be a **set** of APIs and behaviours, defining a generic(!) version of a service. A "service" is, for example, a chat application,
   a microblogging application or an image blogging application. Service extensions should be the core functionality that is universally needed
   to make an application function. In the case of a chat application, that might be:
-  
+
   - Defining message group size granularity: Direct messages, Group messages, Guild-based messages
   - Defining what a room looks like
   - Defining the APIs and behaviours required to send and receive messages
   - Defining the APIs and behaviours required to perform commonly sought after things, such as reacting to a message with an emoji
   - etc.
-  
+
   The goal is that all different polyproto-based chat applications should then implement this shared behaviour. Of course, developers
   may absolutely add their own behaviours and functionality which is perhaps exclusive to their specific implementation. Core
   functionality remains commonly defined however, which should make all polyproto-based chat applications interoperable in these
   defined, common behaviours.
-  
+
 - or describe a **major** technological addition, which can be used in the "requires" section of another P2 extension. This "requires"
   section can be thought of like the dependency list of a software package.
-  
+
   Technological additions might be:
   - Defining APIs and behaviours needed to implement the MLS (Messaging Layer Security) Protocol
   - Defining APIs and behaviours needed to establish and maintain a WebSocket connection, and how to send/receive messages over this
     WebSocket connection.
-    
+
 By using clay-brick-sized building blocks instead of more LEGO-sized building blocks like XMPP does, we hope to mitigate this problem
 that we perceive, while still offering an extensible yet well-defined platform to build on.
 
@@ -161,7 +161,7 @@ and, more recently, https://soatok.blog/2024/08/14/security-issues-in-matrixs-ol
 Matrix is truly impressive from a technical standpoint. Its extremely low centralized architecture fills a niche which especially
 people already interested in technology seem to enjoy. However, this invariably results in the fact that user experience has to be
 compromised. It is of my opinion that while Matrix is relatively good at what it is doing, it is not a good fit to be a potential
-Discord replacement. 
+Discord replacement.
 
 As for a comparison: We are taking a radically different approach to Matrix. Matrix aims for eventually-consistent federation of events
 using cryptographically fully verifiable directed acyclic event graphs, where as polyproto, and by extension Polyphony, prioritize
