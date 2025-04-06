@@ -6,7 +6,7 @@ export function Contribute(): JSX.Element {
         <section className="bg-poly-white">
             <div className="-mb-4 hidden lg:block">
                 <Wave
-                    fill="#ff2058"
+                    fill="#3577ff"
                     paused={false}
                     options={{
                         height: 80,
@@ -18,7 +18,7 @@ export function Contribute(): JSX.Element {
             </div>
             <div className="-mb-4 lg:hidden">
                 <Wave
-                    fill="#ff2058"
+                    fill="#3577ff"
                     paused={false}
                     options={{
                         height: 100,
@@ -70,7 +70,7 @@ export function Contribute(): JSX.Element {
                     </div>
                 </div>
                 <Wave
-                    fill="#ff2058"
+                    fill="#3577ff"
                     paused={false}
                     className="rotate-180 -mt-1"
                     options={{

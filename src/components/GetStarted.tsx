@@ -174,11 +174,10 @@ export function GetStarted(): JSX.Element {
                             >
                                 {/* Rainbow ring layer */}
                                 <span
-                                    className={`absolute inset-0 z-[-2] overflow-visible rounded-full ${
-                                        isReducedMotion
+                                    className={`absolute inset-0 z-[-2] overflow-visible rounded-full ${isReducedMotion
                                             ? ""
                                             : "group-hover:rainbow-animate rainbow-ring"
-                                    }`}
+                                        }`}
                                 />
                                 {/* Emoji particles behind text */}
                                 {hovered && !isReducedMotion && (
@@ -195,7 +194,7 @@ export function GetStarted(): JSX.Element {
                         </h2>
                         <Anchor
                             href="/docs/intro"
-                            className="uppercase font-semibold md:!px-10 bg-poly-green-2 border-poly-green-2 !text-poly-black text-xl md:text-2xl w-[70%] anchor-shadow transition ease-in-out duration-300"
+                            className="uppercase font-semibold md:!px-10 bg-poly-green-1 border-poly-green-1 !text-poly-black text-xl md:text-2xl w-[70%] anchor-shadow transition ease-in-out duration-300"
                         >
                             Learn more
                         </Anchor>
