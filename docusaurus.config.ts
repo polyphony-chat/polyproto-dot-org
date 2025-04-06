@@ -9,7 +9,7 @@ import tailwindPlugin from "./plugins/tailwind-config.cjs"
 
 const config: Config = {
     title: "polyproto",
-    tagline: "A Refreshingly simple decentralised chat plataform",
+    tagline: "A refreshing new, decentralised federation protocol",
     favicon: "img/logo.svg",
 
     // Set the production url of your site here
@@ -69,7 +69,7 @@ const config: Config = {
             disableSwitch: false,
             respectPrefersColorScheme: false,
         },
-        image: "img/docusaurus-social-card.jpg",
+        image: "img/banner-social.jpg",
         navbar: {
             title: "polyproto",
             logo: {

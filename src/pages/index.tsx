@@ -1,17 +1,17 @@
-import type { ReactNode } from "react";
 import Layout from "@theme/Layout";
+import type { ReactNode } from "react";
 
-import { Hero } from "../components/Hero";
 import { About } from "../components/About";
 import { Contribute } from "../components/Contribute";
-import { Product } from "../components/Product";
 import { GetStarted } from "../components/GetStarted";
+import { Hero } from "../components/Hero";
+import { Product } from "../components/Product";
 
 export default function Home(): ReactNode {
   return (
     <Layout
       title="Transforming Online Communication"
-      description="Description will go into a meta tag in <head />"
+      description="The polyproto federation protocol <head />"
     >
       <main>
         <Hero />
