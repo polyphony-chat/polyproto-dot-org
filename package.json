@@ -23,7 +23,7 @@
     "autoprefixer": "^10.4.20",
     "classnames": "^2.5.1",
     "clsx": "^2.0.0",
-    "framer-motion": "^12.9.2",
+    "framer-motion": "^12.12.1",
     "postcss": "^8.5.1",
     "postcss-import": "^16.1.0",
     "prism-react-renderer": "^2.3.0",
