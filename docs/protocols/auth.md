@@ -1,8 +1,3 @@
----
-description: Empty!
-title: p2-auth
----
-
 # p2 extension: polyproto-auth
 
 **v1.0.0-alpha.1** - Treat this as an unfinished draft.
@@ -52,7 +47,7 @@ Fig. 1: Sequence diagram of a successful identity creation process.
 
 To access their account from a new device, an actor authenticates the session with their home server
 by sending authentication information and a
-[certificate signing request (CSR)](../core.md/#71-home-server-signed-certificates-for-public-client-identity-keys-id-cert)
+[certificate signing request (CSR)](./core.md/#61-home-server-signed-certificates-for-public-client-identity-keys-id-cert)
 for the new client. If verified successfully, the server signs the CSR and responds with the newly
 generated ID-Cert and a session token corresponding to this ID-Cert.
 
@@ -143,5 +138,3 @@ section [1.2](#12-authenticating-a-new-client-on-a-polyproto-home-server) to obt
 ID-Cert for that session.
 
 ---
-
---8<-- "snippets/glossary.md"

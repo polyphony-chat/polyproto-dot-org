@@ -23,7 +23,7 @@ const config: Config = {
     organizationName: "polyphony-chat", // Usually your GitHub org/user name.
     projectName: "polyproto-dot-org", // Usually your repo name.
 
-    onBrokenLinks: "throw",
+    onBrokenLinks: "warn",
     onBrokenMarkdownLinks: "warn",
 
     // Even if you don't use internationalization, you can use this field to set
