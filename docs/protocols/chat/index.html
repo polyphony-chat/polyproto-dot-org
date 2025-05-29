@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-protocols/chat" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.0">
+<title data-rh="true">polyproto-chat HTTP API Specification | polyproto</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://polyproto.org/img/banner-social.jpg"><meta data-rh="true" name="twitter:image" content="https://polyproto.org/img/banner-social.jpg"><meta data-rh="true" property="og:url" content="https://polyproto.org/docs/protocols/chat"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="polyproto-chat HTTP API Specification | polyproto"><meta data-rh="true" name="description" content="Namespace: chat"><meta data-rh="true" property="og:description" content="Namespace: chat"><link data-rh="true" rel="icon" href="/img/logo.svg"><link data-rh="true" rel="canonical" href="https://polyproto.org/docs/protocols/chat"><link data-rh="true" rel="alternate" href="https://polyproto.org/docs/protocols/chat" hreflang="en"><link data-rh="true" rel="alternate" href="https://polyproto.org/docs/protocols/chat" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Protocol Definitions","item":"https://polyproto.org/docs/category/protocol-definitions"},{"@type":"ListItem","position":2,"name":"polyproto-chat HTTP API Specification","item":"https://polyproto.org/docs/protocols/chat"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="polyproto RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="polyproto Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.a93e9f3a.css">
+<script src="/assets/js/runtime~main.59d5d350.js" defer="defer"></script>
+<script src="/assets/js/main.ada6d840.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar bg-black h-16 navbar--fixed-top"><div class="navbar__inner max-w-7xl mx-auto text-xl"><div class="navbar__items"><a class="navbar__brand text-white no-underline" href="/"><div class="navbar__logo size-10"><img src="/img/logo.svg" alt="polyproto Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="polyproto Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">polyproto</b></a></div><div class="navbar__items navbar__items--right"><a href="/docs/intro" class="border border-poly-green-1 bg-poly-black px-4 py-2 text-poly-green-1 rounded-md text-center hover:no-underline hover:text-poly-green-1 flex justify-center items-center px-6 !py-1 text-base no-underline anchor-shadow transition ease-in-out duration-300">Docs</a><div class="navbarSearchContainer_dCNk"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/intro">An Overview of polyproto</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/docs/category/protocol-definitions">Protocol Definitions</a><button aria-label="Collapse sidebar category &#x27;Protocol Definitions&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/protocols/core">p2-core</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/protocols/auth">p2 extension: polyproto-auth</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/protocols/chat">polyproto-chat HTTP API Specification</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/contribute">How and what to contribute</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/category/protocol-definitions"><span>Protocol Definitions</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">polyproto-chat HTTP API Specification</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>polyproto-chat HTTP API Specification</h1></header>
+<p><strong>Namespace:</strong> <code>chat</code>
+<strong>Version:</strong> <code>v1.0-beta.1</code>
+<strong>Base Path:</strong> <code>/.p2/chat/v1/</code></p>
+<p>polyproto-chat is a federated chat service for communities, built on the polyproto protocol.
+This specification defines the HTTP API endpoints for core chat functionality including guilds,
+channels, messages, and user management.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="authentication-and-authorization">Authentication and Authorization<a href="#authentication-and-authorization" class="hash-link" aria-label="Direct link to Authentication and Authorization" title="Direct link to Authentication and Authorization">​</a></h2>
+<p>All endpoints requiring authentication use Bearer token authentication as defined in the polyproto core specification. Session tokens are obtained through the core authentication flow and ID-Cert verification process.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="authorization-levels">Authorization Levels<a href="#authorization-levels" class="hash-link" aria-label="Direct link to Authorization Levels" title="Direct link to Authorization Levels">​</a></h3>
+<ul>
+<li><strong>Public</strong>: No authentication required</li>
+<li><strong>Authenticated</strong>: Requires valid session token</li>
+<li><strong>Guild Member</strong>: Requires guild membership</li>
+<li><strong>Guild Admin</strong>: Requires administrative permissions in guild</li>
+<li><strong>Server Admin</strong>: Requires server-wide administrative permissions</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="core-entities">Core Entities<a href="#core-entities" class="hash-link" aria-label="Direct link to Core Entities" title="Direct link to Core Entities">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="guild-object">Guild Object<a href="#guild-object" class="hash-link" aria-label="Direct link to Guild Object" title="Direct link to Guild Object">​</a></h3>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;description&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;icon&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;owner_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;created_at&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;member_count&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;features&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="channel-object">Channel Object<a href="#channel-object" class="hash-link" aria-label="Direct link to Channel Object" title="Direct link to Channel Object">​</a></h3>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;guild_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;position&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;topic&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;parent_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;created_at&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;permissions&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="message-object">Message Object<a href="#message-object" class="hash-link" aria-label="Direct link to Message Object" title="Direct link to Message Object">​</a></h3>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;channel_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;author&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;content&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;timestamp&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;edited_timestamp&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;signature&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;id_cert&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;attachments&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;embeds&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;reactions&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="guild-management">Guild Management<a href="#guild-management" class="hash-link" aria-label="Direct link to Guild Management" title="Direct link to Guild Management">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-guild-information">Get Guild Information<a href="#get-guild-information" class="hash-link" aria-label="Direct link to Get Guild Information" title="Direct link to Get Guild Information">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/guilds/{guild_id}</code></p>
+<p>Retrieve information about a specific guild.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Public for discoverable guilds, Guild Member for private guilds</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Guild object</li>
+<li><code>403</code>: Access forbidden</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-guild">Create Guild<a href="#create-guild" class="hash-link" aria-label="Direct link to Create Guild" title="Direct link to Create Guild">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/guilds</code></p>
+<p>Create a new guild. Requires authentication.</p>
+<p><strong>Authorization:</strong> Authenticated</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;description&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;icon&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>201</code>: Guild created successfully</li>
+<li><code>400</code>: Invalid request body</li>
+<li><code>403</code>: Insufficient permissions</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="update-guild">Update Guild<a href="#update-guild" class="hash-link" aria-label="Direct link to Update Guild" title="Direct link to Update Guild">​</a></h3>
+<p><strong>PATCH</strong> <code>/.p2/chat/v1/guilds/{guild_id}</code></p>
+<p>Update guild settings. Requires guild administrative permissions.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;description&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;icon&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Guild updated successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="delete-guild">Delete Guild<a href="#delete-guild" class="hash-link" aria-label="Direct link to Delete Guild" title="Direct link to Delete Guild">​</a></h3>
+<p><strong>DELETE</strong> <code>/.p2/chat/v1/guilds/{guild_id}</code></p>
+<p>Delete a guild. Only the guild owner can perform this action.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Owner</p>
+<p><strong>Headers:</strong></p>
+<ul>
+<li><code>X-P2-Sensitive-Solution</code> (required): Second factor authentication for sensitive action</li>
+</ul>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>204</code>: Guild deleted successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="channel-management">Channel Management<a href="#channel-management" class="hash-link" aria-label="Direct link to Channel Management" title="Direct link to Channel Management">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-guild-channels">Get Guild Channels<a href="#get-guild-channels" class="hash-link" aria-label="Direct link to Get Guild Channels" title="Direct link to Get Guild Channels">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/guilds/{guild_id}/channels</code></p>
+<p>Retrieve all channels in a guild.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Member</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Array of channel objects</li>
+<li><code>403</code>: Access forbidden</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-channel">Create Channel<a href="#create-channel" class="hash-link" aria-label="Direct link to Create Channel" title="Direct link to Create Channel">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/guilds/{guild_id}/channels</code></p>
+<p>Create a new channel in a guild.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;type&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;topic&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;parent_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>201</code>: Channel created successfully</li>
+<li><code>400</code>: Invalid request body</li>
+<li><code>403</code>: Insufficient permissions</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="update-channel">Update Channel<a href="#update-channel" class="hash-link" aria-label="Direct link to Update Channel" title="Direct link to Update Channel">​</a></h3>
+<p><strong>PATCH</strong> <code>/.p2/chat/v1/channels/{channel_id}</code></p>
+<p>Update channel settings.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;name&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;topic&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;position&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Channel updated successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Channel not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="delete-channel">Delete Channel<a href="#delete-channel" class="hash-link" aria-label="Direct link to Delete Channel" title="Direct link to Delete Channel">​</a></h3>
+<p><strong>DELETE</strong> <code>/.p2/chat/v1/channels/{channel_id}</code></p>
+<p>Delete a channel.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>204</code>: Channel deleted successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Channel not found</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="message-management">Message Management<a href="#message-management" class="hash-link" aria-label="Direct link to Message Management" title="Direct link to Message Management">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-channel-messages">Get Channel Messages<a href="#get-channel-messages" class="hash-link" aria-label="Direct link to Get Channel Messages" title="Direct link to Get Channel Messages">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/channels/{channel_id}/messages</code></p>
+<p>Retrieve messages from a channel with optional pagination.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+<li><code>limit</code> (query, optional): Maximum number of messages to return (default: 50, max: 100)</li>
+<li><code>before</code> (query, optional): Get messages before this message ID</li>
+<li><code>after</code> (query, optional): Get messages after this message ID</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Member</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Array of message objects</li>
+<li><code>403</code>: Access forbidden</li>
+<li><code>404</code>: Channel not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="send-message">Send Message<a href="#send-message" class="hash-link" aria-label="Direct link to Send Message" title="Direct link to Send Message">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/channels/{channel_id}/messages</code></p>
+<p>Send a message to a channel. Messages must be signed with the actor&#x27;s private key.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Member</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;content&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;signature&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;id_cert&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;attachments&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>201</code>: Message sent successfully</li>
+<li><code>400</code>: Invalid message content or signature</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Channel not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="edit-message">Edit Message<a href="#edit-message" class="hash-link" aria-label="Direct link to Edit Message" title="Direct link to Edit Message">​</a></h3>
+<p><strong>PATCH</strong> <code>/.p2/chat/v1/channels/{channel_id}/messages/{message_id}</code></p>
+<p>Edit a previously sent message. Only the message author can edit their messages.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+<li><code>message_id</code> (path, required): The ID of the message</li>
+</ul>
+<p><strong>Authorization:</strong> Message Author</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;content&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;signature&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Message edited successfully</li>
+<li><code>400</code>: Invalid content or signature</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Message not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="delete-message">Delete Message<a href="#delete-message" class="hash-link" aria-label="Direct link to Delete Message" title="Direct link to Delete Message">​</a></h3>
+<p><strong>DELETE</strong> <code>/.p2/chat/v1/channels/{channel_id}/messages/{message_id}</code></p>
+<p>Delete a message. Authors can delete their own messages, administrators can delete any message.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+<li><code>message_id</code> (path, required): The ID of the message</li>
+</ul>
+<p><strong>Authorization:</strong> Message Author or Guild Admin</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>204</code>: Message deleted successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Message not found</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="guild-membership">Guild Membership<a href="#guild-membership" class="hash-link" aria-label="Direct link to Guild Membership" title="Direct link to Guild Membership">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-guild-members">Get Guild Members<a href="#get-guild-members" class="hash-link" aria-label="Direct link to Get Guild Members" title="Direct link to Get Guild Members">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/guilds/{guild_id}/members</code></p>
+<p>Retrieve guild member list with optional pagination.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+<li><code>limit</code> (query, optional): Maximum number of members to return (default: 100)</li>
+<li><code>after</code> (query, optional): Get members after this user ID</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Member</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Array of member objects</li>
+<li><code>403</code>: Access forbidden</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="join-guild">Join Guild<a href="#join-guild" class="hash-link" aria-label="Direct link to Join Guild" title="Direct link to Join Guild">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/guilds/{guild_id}/members</code></p>
+<p>Join a guild using an invite code or if the guild is public.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Authenticated</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;invite_code&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>201</code>: Successfully joined guild</li>
+<li><code>400</code>: Invalid invite code</li>
+<li><code>403</code>: Cannot join guild</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="leave-guild">Leave Guild<a href="#leave-guild" class="hash-link" aria-label="Direct link to Leave Guild" title="Direct link to Leave Guild">​</a></h3>
+<p><strong>DELETE</strong> <code>/.p2/chat/v1/guilds/{guild_id}/members/@me</code></p>
+<p>Leave a guild.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Member</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>204</code>: Successfully left guild</li>
+<li><code>404</code>: Guild not found or not a member</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kick-member">Kick Member<a href="#kick-member" class="hash-link" aria-label="Direct link to Kick Member" title="Direct link to Kick Member">​</a></h3>
+<p><strong>DELETE</strong> <code>/.p2/chat/v1/guilds/{guild_id}/members/{user_id}</code></p>
+<p>Remove a member from the guild.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+<li><code>user_id</code> (path, required): The federation ID of the user to kick</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>204</code>: Member kicked successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Guild or member not found</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="direct-messages">Direct Messages<a href="#direct-messages" class="hash-link" aria-label="Direct link to Direct Messages" title="Direct link to Direct Messages">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-dm-channel">Create DM Channel<a href="#create-dm-channel" class="hash-link" aria-label="Direct link to Create DM Channel" title="Direct link to Create DM Channel">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/users/@me/channels</code></p>
+<p>Create or retrieve a direct message channel with another user.</p>
+<p><strong>Authorization:</strong> Authenticated</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;recipient_id&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Existing DM channel</li>
+<li><code>201</code>: New DM channel created</li>
+<li><code>400</code>: Invalid recipient</li>
+<li><code>404</code>: User not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-dm-channels">Get DM Channels<a href="#get-dm-channels" class="hash-link" aria-label="Direct link to Get DM Channels" title="Direct link to Get DM Channels">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/users/@me/channels</code></p>
+<p>Retrieve all direct message channels for the authenticated user.</p>
+<p><strong>Authorization:</strong> Authenticated</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Array of DM channel objects</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="file-attachments">File Attachments<a href="#file-attachments" class="hash-link" aria-label="Direct link to File Attachments" title="Direct link to File Attachments">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="upload-attachment">Upload Attachment<a href="#upload-attachment" class="hash-link" aria-label="Direct link to Upload Attachment" title="Direct link to Upload Attachment">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/attachments</code></p>
+<p>Upload a file attachment using the RawR resource system.</p>
+<p><strong>Authorization:</strong> Authenticated</p>
+<p><strong>Headers:</strong></p>
+<ul>
+<li><code>Content-Length</code> (required): Size of the file in bytes</li>
+</ul>
+<p><strong>Request Body:</strong> Binary file data</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>201</code>: File uploaded successfully with resource ID</li>
+<li><code>413</code>: File too large</li>
+<li><code>415</code>: Unsupported file type</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-attachment">Get Attachment<a href="#get-attachment" class="hash-link" aria-label="Direct link to Get Attachment" title="Direct link to Get Attachment">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/attachments/{resource_id}</code></p>
+<p>Retrieve a file attachment by resource ID.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>resource_id</code> (path, required): The resource ID of the attachment</li>
+</ul>
+<p><strong>Authorization:</strong> Context-dependent based on message permissions</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: File data</li>
+<li><code>403</code>: Access forbidden</li>
+<li><code>404</code>: Attachment not found</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="guild-invites">Guild Invites<a href="#guild-invites" class="hash-link" aria-label="Direct link to Guild Invites" title="Direct link to Guild Invites">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-invite">Create Invite<a href="#create-invite" class="hash-link" aria-label="Direct link to Create Invite" title="Direct link to Create Invite">​</a></h3>
+<p><strong>POST</strong> <code>/.p2/chat/v1/channels/{channel_id}/invites</code></p>
+<p>Create an invite for a guild channel.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>channel_id</code> (path, required): The ID of the channel</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Member with invite permissions</p>
+<p><strong>Request Body:</strong></p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;max_age&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;max_uses&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;temporary&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;boolean&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>201</code>: Invite created successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Channel not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-guild-invites">Get Guild Invites<a href="#get-guild-invites" class="hash-link" aria-label="Direct link to Get Guild Invites" title="Direct link to Get Guild Invites">​</a></h3>
+<p><strong>GET</strong> <code>/.p2/chat/v1/guilds/{guild_id}/invites</code></p>
+<p>Retrieve all active invites for a guild.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>guild_id</code> (path, required): The ID of the guild</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>200</code>: Array of invite objects</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Guild not found</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="delete-invite">Delete Invite<a href="#delete-invite" class="hash-link" aria-label="Direct link to Delete Invite" title="Direct link to Delete Invite">​</a></h3>
+<p><strong>DELETE</strong> <code>/.p2/chat/v1/invites/{invite_code}</code></p>
+<p>Delete/revoke an invite.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>invite_code</code> (path, required): The invite code to revoke</li>
+</ul>
+<p><strong>Authorization:</strong> Guild Admin or Invite Creator</p>
+<p><strong>Responses:</strong></p>
+<ul>
+<li><code>204</code>: Invite deleted successfully</li>
+<li><code>403</code>: Insufficient permissions</li>
+<li><code>404</code>: Invite not found</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="websocket-events">WebSocket Events<a href="#websocket-events" class="hash-link" aria-label="Direct link to WebSocket Events" title="Direct link to WebSocket Events">​</a></h2>
+<p>polyproto-chat extends the core WebSocket protocol with chat-specific events. Clients must subscribe to the <code>chat</code> service channel to receive these events.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="chat-opcodes">Chat Opcodes<a href="#chat-opcodes" class="hash-link" aria-label="Direct link to Chat Opcodes" title="Direct link to Chat Opcodes">​</a></h3>
+<table><thead><tr><th style="text-align:left">Opcode</th><th style="text-align:left">Name</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left"><code>0</code></td><td style="text-align:left">Message Create</td><td style="text-align:left">New message sent in a channel</td></tr><tr><td style="text-align:left"><code>1</code></td><td style="text-align:left">Message Update</td><td style="text-align:left">Message was edited</td></tr><tr><td style="text-align:left"><code>2</code></td><td style="text-align:left">Message Delete</td><td style="text-align:left">Message was deleted</td></tr><tr><td style="text-align:left"><code>3</code></td><td style="text-align:left">Channel Create</td><td style="text-align:left">New channel created</td></tr><tr><td style="text-align:left"><code>4</code></td><td style="text-align:left">Channel Update</td><td style="text-align:left">Channel was updated</td></tr><tr><td style="text-align:left"><code>5</code></td><td style="text-align:left">Channel Delete</td><td style="text-align:left">Channel was deleted</td></tr><tr><td style="text-align:left"><code>6</code></td><td style="text-align:left">Guild Member Add</td><td style="text-align:left">User joined guild</td></tr><tr><td style="text-align:left"><code>7</code></td><td style="text-align:left">Guild Member Remove</td><td style="text-align:left">User left/was kicked from guild</td></tr><tr><td style="text-align:left"><code>8</code></td><td style="text-align:left">Guild Update</td><td style="text-align:left">Guild settings updated</td></tr><tr><td style="text-align:left"><code>9</code></td><td style="text-align:left">Typing Start</td><td style="text-align:left">User started typing</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="error-handling">Error Handling<a href="#error-handling" class="hash-link" aria-label="Direct link to Error Handling" title="Direct link to Error Handling">​</a></h2>
+<p>All endpoints follow standard HTTP status codes and return error objects in the following format:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;error&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;message&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;string&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;code&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rate-limiting">Rate Limiting<a href="#rate-limiting" class="hash-link" aria-label="Direct link to Rate Limiting" title="Direct link to Rate Limiting">​</a></h2>
+<p>Rate limits are applied per authenticated user and follow Discord-like patterns:</p>
+<ul>
+<li>Message sending: 5 messages per 5 seconds per channel</li>
+<li>Channel creation: 5 channels per 5 minutes per guild</li>
+<li>Guild operations: 5 operations per minute</li>
+</ul>
+<p>Rate limit headers are included in responses:</p>
+<ul>
+<li><code>X-RateLimit-Limit</code>: Request limit for the endpoint</li>
+<li><code>X-RateLimit-Remaining</code>: Remaining requests in current window</li>
+<li><code>X-RateLimit-Reset</code>: Time when rate limit resets</li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/protocols/auth"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">p2 extension: polyproto-auth</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/contribute"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">How and what to contribute</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#authentication-and-authorization" class="table-of-contents__link toc-highlight">Authentication and Authorization</a><ul><li><a href="#authorization-levels" class="table-of-contents__link toc-highlight">Authorization Levels</a></li></ul></li><li><a href="#core-entities" class="table-of-contents__link toc-highlight">Core Entities</a><ul><li><a href="#guild-object" class="table-of-contents__link toc-highlight">Guild Object</a></li><li><a href="#channel-object" class="table-of-contents__link toc-highlight">Channel Object</a></li><li><a href="#message-object" class="table-of-contents__link toc-highlight">Message Object</a></li></ul></li><li><a href="#guild-management" class="table-of-contents__link toc-highlight">Guild Management</a><ul><li><a href="#get-guild-information" class="table-of-contents__link toc-highlight">Get Guild Information</a></li><li><a href="#create-guild" class="table-of-contents__link toc-highlight">Create Guild</a></li><li><a href="#update-guild" class="table-of-contents__link toc-highlight">Update Guild</a></li><li><a href="#delete-guild" class="table-of-contents__link toc-highlight">Delete Guild</a></li></ul></li><li><a href="#channel-management" class="table-of-contents__link toc-highlight">Channel Management</a><ul><li><a href="#get-guild-channels" class="table-of-contents__link toc-highlight">Get Guild Channels</a></li><li><a href="#create-channel" class="table-of-contents__link toc-highlight">Create Channel</a></li><li><a href="#update-channel" class="table-of-contents__link toc-highlight">Update Channel</a></li><li><a href="#delete-channel" class="table-of-contents__link toc-highlight">Delete Channel</a></li></ul></li><li><a href="#message-management" class="table-of-contents__link toc-highlight">Message Management</a><ul><li><a href="#get-channel-messages" class="table-of-contents__link toc-highlight">Get Channel Messages</a></li><li><a href="#send-message" class="table-of-contents__link toc-highlight">Send Message</a></li><li><a href="#edit-message" class="table-of-contents__link toc-highlight">Edit Message</a></li><li><a href="#delete-message" class="table-of-contents__link toc-highlight">Delete Message</a></li></ul></li><li><a href="#guild-membership" class="table-of-contents__link toc-highlight">Guild Membership</a><ul><li><a href="#get-guild-members" class="table-of-contents__link toc-highlight">Get Guild Members</a></li><li><a href="#join-guild" class="table-of-contents__link toc-highlight">Join Guild</a></li><li><a href="#leave-guild" class="table-of-contents__link toc-highlight">Leave Guild</a></li><li><a href="#kick-member" class="table-of-contents__link toc-highlight">Kick Member</a></li></ul></li><li><a href="#direct-messages" class="table-of-contents__link toc-highlight">Direct Messages</a><ul><li><a href="#create-dm-channel" class="table-of-contents__link toc-highlight">Create DM Channel</a></li><li><a href="#get-dm-channels" class="table-of-contents__link toc-highlight">Get DM Channels</a></li></ul></li><li><a href="#file-attachments" class="table-of-contents__link toc-highlight">File Attachments</a><ul><li><a href="#upload-attachment" class="table-of-contents__link toc-highlight">Upload Attachment</a></li><li><a href="#get-attachment" class="table-of-contents__link toc-highlight">Get Attachment</a></li></ul></li><li><a href="#guild-invites" class="table-of-contents__link toc-highlight">Guild Invites</a><ul><li><a href="#create-invite" class="table-of-contents__link toc-highlight">Create Invite</a></li><li><a href="#get-guild-invites" class="table-of-contents__link toc-highlight">Get Guild Invites</a></li><li><a href="#delete-invite" class="table-of-contents__link toc-highlight">Delete Invite</a></li></ul></li><li><a href="#websocket-events" class="table-of-contents__link toc-highlight">WebSocket Events</a><ul><li><a href="#chat-opcodes" class="table-of-contents__link toc-highlight">Chat Opcodes</a></li></ul></li><li><a href="#error-handling" class="table-of-contents__link toc-highlight">Error Handling</a></li><li><a href="#rate-limiting" class="table-of-contents__link toc-highlight">Rate Limiting</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer p-0"><div class="container container-fluid py-8"><div class="row footer__links"><div class="col footer__col last:mb-0"><div class="footer__title text-lg font-body text-poly-indigo-2">GET HELP!</div><ul class="footer__items clean-list font-body"><li class="footer__item"><a class="footer__link-item text-black hover:text-poly-indigo-1 inline-flex items-center" href="/docs/intro">Documentation</a></li><li class="footer__item"><a href="https://github.com/polyphony-chat/polyproto-rs/issues" target="_blank" rel="noopener noreferrer" class="footer__link-item text-black hover:text-poly-indigo-1 inline-flex items-center">See a bug? File an issue!</a></li></ul></div><div class="col footer__col last:mb-0"><div class="footer__title text-lg font-body text-poly-indigo-2">SOCIAL</div><ul class="footer__items clean-list font-body"><li class="footer__item"><a href="https://github.com/polyphony-chat/polyproto-rs" target="_blank" rel="noopener noreferrer" class="footer__link-item text-black hover:text-poly-indigo-1 inline-flex items-center">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discord.com/invite/m3FpcapGDD" target="_blank" rel="noopener noreferrer" class="footer__link-item text-black hover:text-poly-indigo-1 inline-flex items-center">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div></div><div class="bg-poly-green-1 w-full h-20 flex items-center justify-center"><span class="text-sm">Copyright © 2025 The polyproto Contributors.</span></div></footer></div>
+</body>
+</html>
