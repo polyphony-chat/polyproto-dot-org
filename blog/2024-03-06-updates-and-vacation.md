@@ -114,9 +114,11 @@ But one hour of therapy a week can sadly only do *so* much. This is why I, with 
 (particularly my lovely, lovely girlfriend) and my therapist, have decided to admit myself into a mental health clinic that specializes
 in the treatment of depression, anxiety disorders and the like.
 
-:::success "Safety checkpoint reached!"
+:::tip[Safety checkpoint reached!]
 
     It's now over! :)
+
+:::
 
 Starting on March 20th, I will be leaving my everyday life, my girlfriend, my
 friends, laptop, work, personal projects and everything else behind to go there, and hopefully leave a good bad part of me behind when I come back.

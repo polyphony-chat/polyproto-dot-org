@@ -64,6 +64,8 @@ not stored in a central location.
     This might be the case in a social chat messaging system
     similar to Discord, where messages are stored on the servers of the people hosting the chat rooms.
 
+:::
+
 When you want to move your account from one server to another, you:
 
 1. First, create a new account on the new server
@@ -86,6 +88,8 @@ existing relationships intact.
     However, including the homeserver in the process adds to the
     general user experience. If you, for example, have included your federation ID as part of another,
     non-polyproto social media profile, the old server can automatically refer people to the new account.
+
+:::
 
 ### Moving data
 
