@@ -1,4 +1,4 @@
-# polyproto-chat HTTP API Specification
+# polyproto-chat Extension Specification
 
 **Namespace:** `chat`
 **Version:** `v1.0-alpha.1`

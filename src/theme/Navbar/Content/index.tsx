@@ -82,6 +82,12 @@ export default function NavbarContent(): ReactNode {
                     >
                         Docs
                     </Anchor>
+                    <Anchor
+                        className="px-6 !py-1 mx-4 text-base no-underline anchor-shadow transition ease-in-out duration-300"
+                        href="/blog/"
+                    >
+                        Blog
+                    </Anchor>
                     <NavbarItems items={rightItems} />
                     {/* <NavbarColorModeToggle className={styles.colorModeToggle} /> */}
                     {!searchBarItem && (

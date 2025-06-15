@@ -1,3 +1,5 @@
 {
-    "window.autoDetectColorScheme": true
+    "languageToolLinter.languageTool.ignoredWordsInWorkspace": [
+        "polyproto-chat"
+    ]
 }
