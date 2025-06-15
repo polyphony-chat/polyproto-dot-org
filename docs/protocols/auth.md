@@ -1,4 +1,4 @@
-# p2 extension: polyproto-auth
+# polyproto-auth Extension Specification
 
 **v1.0.0-alpha.1** - Treat this as an unfinished draft.
 [Semantic versioning v2.0.0](https://semver.org/spec/v2.0.0.html) is used to version this specification.
