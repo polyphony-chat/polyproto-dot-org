@@ -124,7 +124,7 @@ h6 {
 .theme-code-block,
 .prism-code,
 .token {
-    font-family: "Spline Sans Mono" !important;
+    font-family: "Spline Sans Mono", monospace !important;
 }
 
 .anchor-shadow:hover {
