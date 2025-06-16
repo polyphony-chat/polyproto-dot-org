@@ -1,8 +1,5 @@
 import { ErrorCauseBoundary, useThemeConfig } from "@docusaurus/theme-common"
-import {
-    splitNavbarItems,
-    useNavbarMobileSidebar,
-} from "@docusaurus/theme-common/internal"
+import { splitNavbarItems, useNavbarMobileSidebar } from "@docusaurus/theme-common/internal"
 import NavbarLogo from "@theme/Navbar/Logo"
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
 import NavbarSearch from "@theme/Navbar/Search"
@@ -39,13 +36,7 @@ ${JSON.stringify(item, null, 2)}`,
     )
 }
 
-function NavbarContentLayout({
-    left,
-    right,
-}: {
-    left: ReactNode
-    right: ReactNode
-}) {
+function NavbarContentLayout({ left, right }: { left: ReactNode; right: ReactNode }) {
     return (
         <div className="navbar__inner max-w-7xl mx-auto text-xl">
             <div className="navbar__items">{left}</div>
