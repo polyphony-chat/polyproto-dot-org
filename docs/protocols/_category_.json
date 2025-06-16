@@ -1,8 +1,8 @@
 {
-  "label": "Protocol Definitions",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "The core protocol definition and polyproto.org-defined p2 extensions."
-  }
+    "label": "Protocol Definitions",
+    "position": 2,
+    "link": {
+        "type": "generated-index",
+        "description": "The core protocol definition and polyproto.org-defined p2 extensions."
+    }
 }

@@ -7,8 +7,8 @@
 **Base Path:** `/.p2/auth/v1/`
 
 **v1.0.0-alpha.1** - Treat this as an unfinished draft.
-[Semantic versioning v2.0.0](https://semver.org/spec/v2.0.0.html) is used to version this specification.
-The version number specified here also applies to the API documentation.
+[Semantic versioning v2.0.0](https://semver.org/spec/v2.0.0.html) is used to version this
+specification. The version number specified here also applies to the API documentation.
 
 The `polyproto-auth` extension is a protocol extension for polyproto that provides a basic
 authentication mechanism to register new users and authenticate existing users.
@@ -16,9 +16,8 @@ authentication mechanism to register new users and authenticate existing users.
 ## 1. Registration of a new actor
 
 Registering a new actor in the context of polyproto is done through an API route defined in the
-polyproto-auth
-["No registration needed" API](/APIs/Core/Routes%3A No registration needed/#post-create-identity)
-documentation.
+polyproto-auth ["No registration needed" API](/APIs/Core/Routes%3A No registration
+needed/#post-create-identity) documentation.
 
 ## 1.1 Registering a new actor on a polyproto home server
 
@@ -90,8 +89,8 @@ ID-Cert's origin, the challenge string's signature, and the ID-Cert's validity.
 
 If the verification is successful, the foreign server can issue a session token to the actor.
 
-**Example:**
-Say that Alice is on server A, and wants to authenticate on Server B, using her existing identity.
+**Example:** Say that Alice is on server A, and wants to authenticate on Server B, using her
+existing identity.
 
 Alice's client sends a request to Server B for a challenge string, telling Server B the session ID
 they are communicating from in the process. Upon receiving a response, Alice signs this challenge
@@ -120,9 +119,9 @@ sb->>a: Session token, optional payload
 
 Fig. 3: Sequence diagram of a successful identity verification.
 
-In the diagram, Alice's "optional payload" is extra data that might be requested by servers.
-This is useful when using a single identity across various polyproto implementations, due to
-differing information needs. The payload is signed with the actor's private identity key.
+In the diagram, Alice's "optional payload" is extra data that might be requested by servers. This is
+useful when using a single identity across various polyproto implementations, due to differing
+information needs. The payload is signed with the actor's private identity key.
 
 Likewise, the "optional payload" sent by the server in the above diagram can be used by
 implementations to send additional information to the client. An example might be initial account
@@ -140,7 +139,7 @@ information.
 If Alice's session token expires, they can repeat this process of requesting a challenge string and,
 together with her ID-Cert, exchange it for a session token. However, if Alice wants to access this
 third party account from a completely new device, they will have to perform the steps described in
-section [1.2](#12-authenticating-a-new-client-on-a-polyproto-home-server) to obtain a valid
-ID-Cert for that session.
+section [1.2](#12-authenticating-a-new-client-on-a-polyproto-home-server) to obtain a valid ID-Cert
+for that session.
 
 ---
