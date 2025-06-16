@@ -150,7 +150,7 @@ export function Product(): JSX.Element {
                   Messages
                 </h2>
                 <p className="text-poly-black text-lg pt-6 lg:w-96 max-w- h-[108px]">
-                Produces tamper-resistant data/messages through the use of signatures. Trust, that
+                Produces tamper-resistant data/messages through the use of signatures. Trust that
                 what you see has not been altered along the way.
                 </p>
               </div>
