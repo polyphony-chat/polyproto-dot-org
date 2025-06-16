@@ -1,5 +1,11 @@
 # polyproto-auth Extension Specification
 
+**Namespace:** `auth`
+
+**Version:** `v1.0-alpha.1`
+
+**Base Path:** `/.p2/auth/v1/`
+
 **v1.0.0-alpha.1** - Treat this as an unfinished draft.
 [Semantic versioning v2.0.0](https://semver.org/spec/v2.0.0.html) is used to version this specification.
 The version number specified here also applies to the API documentation.

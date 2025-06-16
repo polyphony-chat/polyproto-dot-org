@@ -1,15 +1,18 @@
 ---
 sidebar_position: 2
 description: The core protocol specification. Read this first!
-title: p2-core
+title: polyproto Core Protocol Specification
 ---
 
 # polyproto Specification
 
-- Namespace: `core`
-- Version: `v0.1.0-alpha.1`
-- API version: `v0.1.0-alpha.1`
-- API documentation: [apidocs.polyproto.org](https://apidocs.polyproto.org)
+**Namespace:** `core`
+
+**Version:** `v1.0-alpha.1`
+
+**Base Path:** `/.p2/core/v1/`
+
+**API documentation:** [apidocs.polyproto.org](https://apidocs.polyproto.org)
 
 :::warning
 
@@ -2169,7 +2172,7 @@ The "relative root" is the base domain of the server, which is used to retrieve 
 The uniqueness constraint of the identifier is important. If a collision occurs when trying to
 move the resource to another server, the resource cannot be migrated in a way that preserves the
 references to it. One way to ensure the uniqueness of the identifier is to use a hash function on the
-resource itself. Combining this has with a cryptographically strong nonce, then hashing the result of
+resource itself. Combining this hash with a cryptographically strong nonce, then hashing the result of
 concatenating the nonce and the hash of the resource should yield a unique identifier.
 
 The URI for resource addressing with relative roots is formatted as follows:

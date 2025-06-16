@@ -1,7 +1,9 @@
 # polyproto-chat Extension Specification
 
 **Namespace:** `chat`
+
 **Version:** `v1.0-alpha.1`
+
 **Base Path:** `/.p2/chat/v1/`
 
 polyproto-chat is a federated chat service for communities, built on the polyproto protocol.

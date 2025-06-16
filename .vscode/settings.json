@@ -1,5 +1,7 @@
 {
     "languageToolLinter.languageTool.ignoredWordsInWorkspace": [
-        "polyproto-chat"
+        "polyproto-auth",
+        "polyproto-chat",
+        "polyproto-mls"
     ]
 }
