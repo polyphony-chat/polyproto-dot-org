@@ -88,7 +88,7 @@ host.
 :::note
 
 Consult the excerpt of this specification explaining what a "domain name" is, to avoid
-misunderstandings. You can find this excerpt [here](#def-domain-name).
+misunderstandings. You can find this excerpt [in the table of section #5](#def-domain-name).
 
 :::
 
