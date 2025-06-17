@@ -96,7 +96,7 @@ represented in the ID-Cert you then receive from your home server.
 :::info
 
 If you are interested about the details, feel free to jump to
-[section 7.1 in the protocol](https://google.com)
+[section 7.1 in the protocol](protocols/core/#71-identity-migration)
 specification document, which covers this exact thing and more.
 
 :::
@@ -142,4 +142,4 @@ notice any of the technical stuff going on in the background.
 This is just an outline about how polyproto works. The goal with this outline is to inform about the most
 relevant parts, while intentionally leaving out some details for the sake of clarity. If you have read
 and understood this overview, you should have no - or at least way less - trouble reading the
-[full protocol specification](https://google.com), which covers a lot more details!
+[full protocol specification](protocols/core/), which covers a lot more details!
