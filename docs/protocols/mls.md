@@ -2,7 +2,7 @@
 
 **Namespace:** `mls`
 
-**Version:** `v1.0-alpha.1`
+**Version:** `v1.0-alpha.2`
 
 **Base Path:** `/.p2/mls/v1/`
 
@@ -77,3 +77,14 @@ Service (AS) and Delivery Service (DS) in the context of Messaging Layer Securit
 _[Source](https://messaginglayersecurity.rocks/mls-architecture/draft-ietf-mls-architecture.html#name-abstract-services)_
 
 :::
+
+## 3. HTTP APIs
+
+polyproto-mls provides a set of versioned HTTP APIs, accessible via the `mls` namespace. The HTTP
+APIs provide functionality required by the MLS specification for polyproto-mls implementers to also
+be compliant MLS implementations.
+
+The HTTP APIs offered through polyproto-mls are fully documented as OpenAPI specification documents
+for OpenAPI versions 3.0.0 and 3.1.0. The OpenAPI specification documents can be found
+[at this link](https://github.com/polyphony-chat/typespec-openapi/tree/main/build). Select the
+OpenAPI preferred OpenAPI version and find the versioned `.yaml` files in the corresponding folder.
