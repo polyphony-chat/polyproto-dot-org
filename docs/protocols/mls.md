@@ -46,3 +46,34 @@ polyproto-mls v1 offers a
 [Post-Quantum cryptography (PQC)](https://en.wikipedia.org/wiki/Post-quantum_cryptography) cipher
 suite in order to resist possible cryptanalytic attacks by a quantum computer on encrypted messages
 shared via polyproto-mls.
+
+:::info
+
+The MLS working group is considering adoption of the draft document
+[ML-KEM and Hybrid Cipher Suites for MLS](https://datatracker.ietf.org/doc/html/draft-mahy-mls-pq).
+Until official recommendations are made regarding eligible, well-suited cipher suites for hybrid,
+Post-Quantum/Traditional authenticity and confidentiality guarantees, polyproto-mls may either
+employ a temporary, own cipher suite, or leave this particular section unfinished.
+
+:::
+
+## 2. Home Server Responsibilities
+
+Services aiming to be compliant with polyproto-mls v1 must take on the roles of Authentication
+Service (AS) and Delivery Service (DS) in the context of Messaging Layer Security.
+
+:::note[Quote from the MLS Architecture Document:]
+
+> An Authentication Service (AS), which is responsible for attesting to bindings between
+> application-meaningful identifiers and the public key material used for authentication in the MLS
+> protocol. The AS must also be able to generate credentials that encode these bindings and validate
+> credentials provided by MLS clients.<br/> A Delivery Service (DS), which can receive and
+> distribute messages between group members. In the case of group messaging, the DS may also be
+> responsible for acting as a "broadcaster" where the sender sends a single message which is then
+> forwarded to each recipient in the group by the DS. The DS is also responsible for storing and
+> delivering initial public key material required by MLS clients in order to proceed with the group
+> secret key establishment that is part of the MLS protocol.
+
+_[Source](https://messaginglayersecurity.rocks/mls-architecture/draft-ietf-mls-architecture.html#name-abstract-services)_
+
+:::
