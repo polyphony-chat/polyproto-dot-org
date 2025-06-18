@@ -1,3 +1,5 @@
+[![FAQ-shield]][FAQ]
+
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
@@ -60,3 +62,6 @@ yarn build
 
 This command generates static content into the `build` directory and can be served using any static
 contents hosting service.
+
+[FAQ-shield]: https://img.shields.io/badge/Frequently_Asked_Questions_(FAQ)-ff62bd
+[FAQ]: https://github.com/polyphony-chat/.github/blob/main/FAQ.md
