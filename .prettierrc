@@ -4,5 +4,7 @@
     "useTabs": false,
     "semi": false,
     "singleQuote": false,
-    "endOfLine": "lf"
+    "endOfLine": "lf",
+    "printWidth": 100,
+    "proseWrap": "always"
 }
