@@ -87,4 +87,38 @@ be compliant MLS implementations.
 The HTTP APIs offered through polyproto-mls are fully documented as OpenAPI specification documents
 for OpenAPI versions 3.0.0 and 3.1.0. The OpenAPI specification documents can be found
 [at this link](https://github.com/polyphony-chat/typespec-openapi/tree/main/build). Select the
-OpenAPI preferred OpenAPI version and find the versioned `.yaml` files in the corresponding folder.
+preferred OpenAPI version and find the versioned `.yaml` files in the corresponding folder.
+
+## 4. WebSocket Gateway
+
+The polyproto-mls extension specification also registers a namespace `mls` for the WebSocket
+protocol defined in section #3 of the polyproto-core specification. As usual for WebSockets, this
+provides optional, real-time bidirectional communication functionality for implementations that
+require it.
+
+Servers **must** offer the `mls` namespace for the WebSocket Gateway and the functionality described
+by this chapter. Clients may subscribe to the `mls` WebSocket Gateway Service Channel by sending a
+subscribe event with the appropriate contents to the polyproto-mls WebSocket Gateway server.
+
+:::tip[Example MLS subscribe payload]
+
+```json
+{
+    "n": "core",
+    "op": 8,
+    "d": {
+        "action": "subscribe",
+        "service": "mls"
+    }
+}
+```
+
+:::
+
+### 4.1. Gateway Event Opcodes
+
+The following opcodes are defined by the `mls` namespace:
+
+| Opcode | Name | Action | Description |
+| ------ | ---- | ------ | ----------- |
+| `TBD`  | TBD  | TBD    | TBD         |
