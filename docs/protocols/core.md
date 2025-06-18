@@ -686,7 +686,52 @@ Heartbeat request events do not carry any data in their `d` payload.
 
 #### 3.2.4 Establishing a connection
 
-TODO
+The following diagram illustrates the process of establishing a WebSocket connection, including authentication, error handling with close codes, heartbeat, and session resumption:
+
+```mermaid
+sequenceDiagram
+autonumber
+actor C as Client
+participant G as Gateway
+
+C->>G: Open WebSocket connection
+G->>C: Hello event (heartbeat interval)
+C->>G: Identify (session token)
+alt Authentication success
+  G->>C: Ready event
+else Invalid authentication
+  G-xC: Close (4004 Invalid authentication)
+  Note right of C: Connection closed, must retry
+else Already authenticated
+  G-xC: Close (4005 Already authenticated)
+  Note right of C: Protocol error, must reconnect
+end
+
+par Heartbeats
+  loop Heartbeat interval
+    C->>G: Heartbeat
+    G->>C: Heartbeat ACK
+  end
+and Missed heartbeat
+  G->>C: Heartbeat request
+  alt No response
+    G-xC: Close (4009 Timeout)
+    Note right of C: Connection closed due to timeout
+  end
+end
+
+opt Resume session
+  C->>G: Resume (last sequence, token)
+  alt Resume accepted
+    G->>C: Resumed event
+  else Too many events or not eligible
+    G-xC: Close (4010 Unresumeable)
+    Note right of C: Must start new session
+  end
+end
+```
+
+*Fig. X: Sequence diagram of WebSocket connection establishment, authentication, heartbeat, and error handling in polyproto.*
 
 #### 3.2.5 Closing a connection
 
@@ -737,7 +782,7 @@ formatted is also defined in [section 3.2.3.8](#3238-heartbeat-and-heartbeat-ack
 The server must prioritize sending these "missed" events over other events. The server should expect
 that a client requests these events yet another time.
 
-#### 3.3 Events over events
+#### 3.3 Events over HTTP
 
 For some implementation contexts, a constant WebSocket connection might not be wanted. A client can
 instead opt to query an API endpoint to receive events, which would normally be sent through the WebSocket
@@ -883,19 +928,7 @@ for information on how this is done.
 
 #### 4.1.2 Sensitive actions
 
-:::danger[Deprecation notice]
-
-# Challenge strings will be removed soon.
-
-Their concept has been thought out further and implemented in different ways. Challenge strings are
-no longer needed. This section will be removed soon.
-
-The API documentation already reflects this change; expect the protocol specification to reflect
-these changes in upcoming beta versions of polyproto.
-
-TODO: Better describe "Sensitive-Solution" instead.
-
-:::
+TODO: Better describe "Sensitive-Solution".
 
 :::warning
 
@@ -2498,7 +2531,7 @@ service provider to use as a "primary service provider" for that service.
 
 If the actor is human, clients must not override the existing
 key-value pair silently. Instead, clients must either ask the actor to confirm the change or
-not change the key-value pair. Automated actors may override values as they see fit.
+not change the key-value pair.
 
 Changing a primary service provider entry is considered a sensitive action and should
 require a second factor of authentication.
