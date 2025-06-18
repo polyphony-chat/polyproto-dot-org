@@ -691,7 +691,8 @@ Heartbeat request events do not carry any data in their `d` payload.
 
 #### 3.2.4 Establishing a connection
 
-The following diagram illustrates the process of establishing a WebSocket connection, including authentication, error handling with close codes, heartbeat, and session resumption:
+The following diagram illustrates the process of establishing a WebSocket connection, including
+authentication, error handling with close codes, heartbeat, and session resumption:
 
 ```mermaid
 sequenceDiagram
@@ -736,7 +737,8 @@ opt Resume session
 end
 ```
 
-*Fig. X: Sequence diagram of WebSocket connection establishment, authentication, heartbeat, and error handling in polyproto.*
+_Fig. X: Sequence diagram of WebSocket connection establishment, authentication, heartbeat, and
+error handling in polyproto._
 
 #### 3.2.5 Closing a connection
 
@@ -2536,7 +2538,7 @@ is no limitation to how many services any given actor can register with and what
 Application-specific implementations of polyproto should consider that users of their service might
 also want to register for services offered by other servers, using the same identity.
 
-## 9.1 Discoverability
+### 9.1 Discoverability
 
 The discoverability feature allows users who are registered with the same service but on different
 servers to communicate with each other. The actor initiating the communication only needs to know
@@ -2589,15 +2591,14 @@ the name of the service, and the value is the base URL of the server hosting the
 The API routes for managing discoverability are documented in the
 [API documentation](https://apidocs.polyproto.org)
 
-### 9.1.1 Changing a primary service provider
+#### 9.1.1 Changing a primary service provider
 
 Keys are unique in the actor-scoped service->service-provider table. Actors wanting to register for
 two or more different implementations of the same service must select which service provider to use
 as a "primary service provider" for that service.
 
-If the actor is human, clients must not override the existing
-key-value pair silently. Instead, clients must either ask the actor to confirm the change or
-not change the key-value pair.
+If the actor is human, clients must not override the existing key-value pair silently. Instead,
+clients must either ask the actor to confirm the change or not change the key-value pair.
 
 Changing a primary service provider entry is considered a sensitive action and should require a
 second factor of authentication.
@@ -2605,3 +2606,9 @@ second factor of authentication.
 Messages do not get moved or re-signed when changing the primary service provider for a given
 service. If an actor wants to move their messages to the new primary service provider, they must
 request a [migration](#7-migrations).
+
+## 10. Security Considerations
+
+| Security Consideration                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Recommended Mitigation Strategy                                                                                                                                                                                                                                                 | Additional Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In scenarios using encryption for additional confidentiality in a message exchange, polyproto has a similar vulnerability to Matrix, where a malicious home server can add a device under their control to another user's account in rooms they wish to eavesdrop on. When this happens, the malicious device will be displayed and labeled as 'unverified' to all users in the room, and a warning icon will be added to the room and messages sent by the malicious device. However, despite these visual warnings, existing devices will still share their inbound Megolm sessions with the new device, which allows decryption of future messages sent in the room. | Clients should periodically fetch a list of all of their active sessions from the server and compare that list to the set of their sessions in encrypted rooms. If this second set has entries that are not in the first set, the client should alert the user about that fact. | Using modern security architectures such as Messaging Layer Security (MLS) makes it a lot harder for home servers to impersonate an actor in encrypted rooms the actor already is in. In addition, a new security feature (ID-Cert Chains) is being considered for inclusion in polyproto, which would make it practically impossible for home servers to impersonate an actor in encrypted communications with another actor or group of actors the actor has previously conversed with, using the TOFU (Trust On First Use) principle. |

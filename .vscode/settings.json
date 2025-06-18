@@ -2,6 +2,7 @@
     "languageToolLinter.languageTool.ignoredWordsInWorkspace": [
         "hkdf",
         "hpke",
+        "megolm",
         "polyproto-auth",
         "polyproto-chat",
         "polyproto-core",
