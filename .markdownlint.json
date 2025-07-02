@@ -1,0 +1,13 @@
+{
+    "default": true,
+    "MD013": false,
+    "MD033": false,
+    "MD041": false,
+    "MD025": false,
+    "MD026": {
+        "punctuation": ".,;:!"
+    },
+    "MD037": false,
+    "MD046": false,
+    "MD007": false
+}

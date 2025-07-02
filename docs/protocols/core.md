@@ -8,7 +8,7 @@ title: polyproto Core Protocol Specification
 
 **Namespace:** `core`
 
-**Version:** `v1.0-alpha.1`
+**Version:** `v1.0-beta.1`
 
 **Base Path:** `/.p2/core/v1/`
 
@@ -16,8 +16,9 @@ title: polyproto Core Protocol Specification
 
 :::warning
 
-The polyproto specification document is in an **alpha** phase. Please report any inconsistencies,
-missing or duplicate information and other mistakes at [github.com/polyphony-chat/docs/issues](https://github.com/polyphony-chat/docs/issues).
+The polyproto specification document is in an **early beta** phase. Please report any
+inconsistencies, missing or duplicate information and other mistakes at
+[github.com/polyphony-chat/docs/issues](https://github.com/polyphony-chat/docs/issues).
 
 :::
 
@@ -382,9 +383,10 @@ this channel are defined by the service's specification.
 
 ##### 3.2.3.4 New session event
 
-The "New Session" event is sent by the server to all sessions except the new one. The `d` payload
-of this event contains the ASCII-PEM encoded ID-Cert of the new session. You can find more information
-about the new session mechanism in [section 4.3](#43-protection-against-misuse-by-malicious-home-servers).
+The "New Session" event is sent by the server to all sessions except the new one. The `d` payload of
+this event contains the ASCII-PEM encoded ID-Cert of the new session. You can find more information
+about the new session mechanism in
+[section 4.4](#44-protection-against-misuse-by-malicious-home-servers).
 
 :::tip[Example new session event payload]
 
@@ -888,10 +890,10 @@ An actor can choose to use the same identity for multiple polyproto implementati
 ### 4.1 Authentication
 
 The core polyproto specification does not contain a strict definition of authentication procedures
-and endpoints. This allows for a wide range of authentication methods to be used. However, if
-implementations want to closely interoperate with each other, they should highly consider
-implementing the [polyproto-auth](./auth.md) standard for authenticating on home servers and
-foreign servers alike.
+and endpoints for home servers. This allows for a wide range of authentication methods to be used,
+such as OIDC or LDAP. To achieve the highest level of interoperability, all polyproto
+implementations should highly consider implementing the [polyproto-auth](./auth.md) standard for
+authenticating on home servers and foreign servers alike.
 
 :::warning
 
@@ -918,15 +920,57 @@ protected route.
 #### 4.1.1 Authenticating on a foreign server
 
 Regardless of the authentication method used, the foreign server must verify the actor's identity
-before allowing them to perform any actions. This verification must be done by proving the cryptographic
-connection between an actors' home server's public identity key and the actor's ID-Cert through
-ID-Cert signature verification.
+before allowing them to perform any actions. This verification must be done by proving that the
+actor is in possession of the private key for their ID-Cert, and that the ID-Cert actually belongs
+to the home server that the actor claims. This is done via
+[a challenge string](#43-challenge-strings) in the following flow:
+
+```mermaid
+sequenceDiagram
+autonumber
+participant HomeserverA as "Homeserver A"
+actor Alice
+participant HomeserverB as "Homeserver B"
+
+note over Alice, HomeserverA: Alice is registered on Homeserver A
+
+Alice->>HomeserverB: GET /.p2/core/v1/session/auth
+HomeserverB->>HomeserverB: Generate challenge & lifetime
+
+HomeserverB-->>Alice: keytrial { challenge, lifetime }
+Alice->>Alice: Sign challenge with private identity key
+
+Alice->>HomeserverB: POST keytrial { signature, federation_id, cert_serial }
+HomeserverB->>HomeserverB: Check request format
+
+HomeserverB->>HomeserverA: GET cert (federation_id, cert_serial)
+HomeserverA->>HomeserverA: Look up certificate & status
+
+HomeserverA-->>HomeserverB: cert, status (valid/invalid)
+HomeserverB->>HomeserverB: Check certificate validity
+HomeserverB->>HomeserverB: Check certificate expiry
+HomeserverB->>HomeserverB: Verify signature
+
+alt Signature and cert valid
+    HomeserverB->>HomeserverB: Generate authentication token
+    HomeserverB->>HomeserverB: Hash and store token in DB
+    HomeserverB-->>Alice: auth token (secret)
+    Alice->>Alice: Store authentication token
+    Alice->>HomeserverB: Use auth token for further requests
+    HomeserverB->>HomeserverB: Validate token for each request
+else Signature or cert invalid
+    HomeserverB-->>Alice: error (authentication failed)
+end
+```
+
+_Fig. X: Demonstration of authentication on a foreign server._
 
 Before a foreign actor is allowed to send messages on the server, the server must also check with
-the actor's home server to ensure that the ID-Cert has not been revoked. See [section 6.4.1](#641-verifying-that-a-newly-retrieved-id-cert-is-not-out-of-date)
-for information on how this is done.
+the actor's home server to ensure that the ID-Cert has not been revoked (steps #9 and #10 in the
+diagram). See [section 6.4.1](#641-verifying-that-a-newly-retrieved-id-cert-is-not-out-of-date) for
+information on how this is done.
 
-#### 4.1.2 Sensitive actions
+#### 4.2 Sensitive actions
 
 TODO: Better describe "Sensitive-Solution".
 
@@ -962,7 +1006,7 @@ value of this header is to be that password.
 
 :::
 
-### 4.2 Challenge strings
+### 4.3 Challenge strings
 
 Servers use challenge strings to verify an actor's private identity key
 possession without revealing the private key itself. These strings, ranging from 32 to 256
@@ -972,8 +1016,8 @@ ID-Cert to the server, which then verifies the signature's authenticity.
 
 :::warning
 
-Challenge strings provide a different set of security guarantees than [sensitive actions](#412-sensitive-actions)
-do. They are not to be used interchangeably.
+Challenge strings provide a different set of security guarantees than
+[sensitive actions](#42-sensitive-actions) do. They are not to be used interchangeably.
 
 :::
 
@@ -1020,7 +1064,12 @@ else
 end
 ```
 
-### 4.3 Protection against misuse by malicious home servers
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable-next-line MD036 -->
+_Fig. X: Challenge string validation_
+<!-- prettier-ignore-end -->
+
+### 4.4 Protection against misuse by malicious home servers
 
 To protect users from misuse by malicious home servers, a mechanism is needed to prevent home
 servers from generating federation tokens for users without their consent and knowledge.
@@ -1054,11 +1103,11 @@ excluding the new session. The `NEW_SESSION` event's stored data can be accessed
 :::note
 
 With proper safety precautions and strong encryption, it is extremely unlikely for a malicious
-server to be able to listen in on encrypted conversations, without all users in that
-conversation noticing. When implementing the polyproto-mls P2 extension, MLS's forward secrecy
-guarantees ensure that, in theory, a malicious session cannot decrypt any messages sent before
-its' join epoch. If secrecy or confidentiality are of concern, users should host their own home
-server and use end-to-end encryption, such as polyproto-mls.
+server to be able to listen in on encrypted conversations, without all users in that conversation
+noticing. When implementing the polyproto-mls P2 extension, MLS's forward secrecy guarantees ensure
+that, in theory, a malicious session cannot decrypt any messages sent before its join epoch. If
+secrecy or confidentiality are of concern, users should host their own home server and use
+end-to-end encryption, such as polyproto-mls.
 
 :::
 
@@ -1106,7 +1155,7 @@ The ID-Cert, an [X.509](https://en.wikipedia.org/wiki/X.509) certificate, valida
 identity key. It is an actor-generated CSR ([Certificate Signing Request](https://en.wikipedia.org/wiki/Certificate_signing_request)),
 signed by a home server, encompassing actor identity information and the client's public identity key.
 Clients can get an ID-Cert in return for a valid and well-formed CSR. Generating a new ID-Cert is
-considered a [sensitive action](#412-sensitive-actions) and therefore should require a second factor
+considered a [sensitive action](#42-sensitive-actions) and therefore should require a second factor
 of authentication.
 
 A CSR in the context of polyproto will be referred to as an ID-CSR. ID-CSRs are DER- or PEM-encoded
@@ -1257,13 +1306,13 @@ malicious server cannot generate an identity key pair for Alice, which is signed
 
 #### 6.1.3 Key rotation
 
-A session can choose to regenerate their ID-Cert at any time. This is done by taking an identity
-key pair, using the private key to generate a new CSR, and sending the new Certificate Signing
-Request to the home server. The home server will then generate the new ID-Cert, given that
-the CSR is valid. Actors can only regenerate ID-Certs for their current session, identified by their
-session ID and session token. Other sessions can only be invalidated by [revoking them](#614-early-revocation-of-id-certs).
-Re-generating an ID-Cert is a [sensitive action](#412-sensitive-actions), performed by using the
-appropriate API route.
+A session can choose to regenerate their ID-Cert at any time. This is done by taking an identity key
+pair, using the private key to generate a new CSR, and sending the new Certificate Signing Request
+to the home server. The home server will then generate the new ID-Cert, given that the CSR is valid.
+Actors can only regenerate ID-Certs for their current session, identified by their session ID and
+session token. Other sessions can only be invalidated by
+[revoking them](#614-early-revocation-of-id-certs). Re-generating an ID-Cert is a
+[sensitive action](#42-sensitive-actions), performed by using the appropriate API route.
 
 Home servers must keep track of the ID-Certs of all users (and their clients) registered on them
 and must offer a clients' ID-Cert for a given timestamp on request. This is to ensure messages
@@ -1345,7 +1394,7 @@ reasons, such as
 - keeping the number of ID-Certs associated with an actor within a desired boundary
 
 When an ID-Cert is revoked, the server must revoke the session associated with the revoked ID-Cert.
-Revoking an ID-Cert is considered a [sensitive action](#412-sensitive-actions) and therefore should
+Revoking an ID-Cert is considered a [sensitive action](#42-sensitive-actions) and therefore should
 require a second factor of authentication.
 
 {/*TODO*/}
@@ -2294,12 +2343,12 @@ JSON file.
 ### 7.4 Challenges and trust
 
 Changing the publicly visible ownership of actor data requires the chain of trust to be maintained.
-If an "old" account wants to change the publicly visible ownership of its data, the "old"
-account must prove that it possesses the private keys that were used to
-sign the messages. This is done by signing a [challenge string](#42-challenge-strings) with the private
-keys. If the server verifies the challenge, it authorizes the new account to re-sign the old
-account's messages signed with the verified key. Instead of overwriting the message, a new message variant
-with the new signature is created, preserving the old message.
+If an "old" account wants to change the publicly visible ownership of its data, the "old" account
+must prove that it possesses the private keys that were used to sign the messages. This is done by
+signing a [challenge string](#42-sensitive-actions) with the private keys. If the server verifies
+the challenge, it authorizes the new account to re-sign the old account's messages signed with the
+verified key. Instead of overwriting the message, a new message variant with the new signature is
+created, preserving the old message.
 
 Implementations and protocol extensions should carefully consider the extent of messages that can be
 re-signed.
