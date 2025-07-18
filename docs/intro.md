@@ -96,7 +96,7 @@ represented in the ID-Cert you then receive from your home server.
 :::info
 
 If you are interested about the details, feel free to jump to
-[section 7.1 in the protocol](protocols/core/#71-identity-migration)
+[section 6.1 in the protocol](protocols/core/#61-home-server-signed-certificates-for-public-client-identity-keys-id-cert)
 specification document, which covers this exact thing and more.
 
 :::
