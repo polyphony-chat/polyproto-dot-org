@@ -970,7 +970,7 @@ the actor's home server to ensure that the ID-Cert has not been revoked (steps #
 diagram). See [section 6.4.1](#641-verifying-that-a-newly-retrieved-id-cert-is-not-out-of-date) for
 information on how this is done.
 
-#### 4.2 Sensitive actions
+### 4.2 Sensitive actions
 
 TODO: Better describe "Sensitive-Solution".
 
