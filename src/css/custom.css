@@ -2,6 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+    didn't wanna learn tailwind (which I dislike in concept)
+    just for fixing up the CSS lol
+
+    enjoy some cursed CSS selector abominations
+*/
+
+:root {
+    color-scheme: light dark;
+    color: light-dark(black, white);
+    --ifm-menu-color: light-dark(#606770, grey)
+}
+
+.markdown ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 1rem;
+}
+
+.markdown {
+    content-visibility: auto
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ifm-toc-link-color: hsl(0, 0%, 75%);
+    }
+    [class*="clean-btn"]::after,
+    [class*="clean-btn"]::before,
+    .breadcrumbs__item::after {
+        /* 
+            Some icons are apparently done using a `background:`,
+            as such applying i.e `color:` is not possible. Definitely a hack.
+        */    
+        filter: invert(100)!important;
+    }
+    code {
+        border-color: #404040;
+    }
+    [class*="docCardListItem"] {
+        color: white;
+    }
+    .card {
+        background: black;
+    }
+    .card:not(:hover) {
+        border-color: var(--ifm-menu-color)!important;
+    }
+    .card:hover {
+        color: var(--ifm-color-primary);
+    }
+    [class*="sidebar"] {
+        color: white!important;
+    }
+    .pagination-nav__sublabel {
+        color: var(--ifm-menu-color);
+    }
+    .breadcrumbs__link {
+        color: white;
+    }
+    .navbar-sidebar {
+        background-color: black;
+    }
+}
+
+[class*="docSidebarContainer"], .table-of-contents__left-border {
+    border-color: light-dark(black, var(--ifm-menu-color))!important;
+}
+
+[class*="Icon"] {
+    color: light-dark(black, white);
+}
+
+.theme-back-to-top-button {
+    background-color: light-dark(white, black)!important;
+}
+
+[id*="mermaid-svg"] {
+    background-color: light-dark(transparent, white);
+    /* ↓ I hope this is also in a variable somewhere */
+    border-radius: 0.45rem;
+}
+
+code {
+    background-color: light-dark(white, black);
+}
+
+.breadcrumbs__link {
+    /* 
+        for some reason, "sub" is centered here, instead of "middle".
+    */    
+    vertical-align: sub;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+    /*
+        Again, I don't know what the FUCK is happening here but it's aligned now
+    */    
+    vertical-align: super;
+}
+
 @font-face {
     font-display: swap;
     font-family: "Satoshi";
