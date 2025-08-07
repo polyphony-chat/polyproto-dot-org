@@ -26,6 +26,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    :root {
+        --ifm-toc-link-color: hsl(0, 0%, 75%);
+    }
     [class*="clean-btn"]::after,
     [class*="clean-btn"]::before,
     .breadcrumbs__item::after {
@@ -39,7 +42,16 @@
         border-color: #404040;
     }
     [class*="docCardListItem"] {
-        color: black;
+        color: white;
+    }
+    .card {
+        background: black;
+    }
+    .card:not(:hover) {
+        border-color: var(--ifm-menu-color)!important;
+    }
+    .card:hover {
+        color: var(--ifm-color-primary);
     }
     [class*="sidebar"] {
         color: white!important;
@@ -61,10 +73,6 @@
 
 [class*="Icon"] {
     color: light-dark(black, white);
-}
-
-.table-of-contents__link:not(.toc-highlight) {
-    color: light-dark(hsl(0, 0%, 40%), hsl(0, 0%, 75%));
 }
 
 .theme-back-to-top-button {
