@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpolyproto_dot_org=self.webpackChunkpolyproto_dot_org||[]).push([[8947],{6600:t=>{t.exports=JSON.parse('{"authors":[{"name":"bitfl0wer","description":"Lead silly individual","avatar":"https://avatars.githubusercontent.com/u/39242991?v=4","key":"bitfl0wer","page":null,"count":10}]}')}}]);

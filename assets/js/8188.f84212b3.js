@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpolyproto_docs=self.webpackChunkpolyproto_docs||[]).push([[8188],{8188:(e,o,s)=>{s.d(o,{createPieServices:()=>c.f});var c=s(9786);s(8198)}}]);
