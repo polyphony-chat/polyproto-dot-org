@@ -65,46 +65,34 @@ function EmojiParticles({ trigger }: { trigger: boolean }) {
 
     return (
         <div className="absolute top-1/2 left-1/2 pointer-events-none">
-            {particles.map(
-                ({
-                    id,
-                    emoji,
-                    offsetX,
-                    offsetY,
-                    delay,
-                    initialX,
-                    initialY,
-                }) => (
-                    <motion.span
-                        key={id}
-                        initial={{
-                            x: initialX,
-                            y: initialY,
-                            opacity: 1,
-                            scale: 1.7,
-                        }}
-                        animate={{
-                            x: initialX + offsetX,
-                            y: initialY + offsetY,
-                            opacity: 0,
-                            scale: 0.5,
-                        }}
-                        transition={{
-                            duration: 1,
-                            delay,
-                            ease: "easeOut",
-                        }}
-                        onAnimationComplete={() =>
-                            setParticles((prev) =>
-                                prev.filter((p) => p.id !== id)
-                            )
-                        }
-                        className="absolute text-xl"
-                    >
-                        {emoji}
-                    </motion.span>
-                )
-            )}
+            {particles.map(({ id, emoji, offsetX, offsetY, delay, initialX, initialY }) => (
+                <motion.span
+                    key={id}
+                    initial={{
+                        x: initialX,
+                        y: initialY,
+                        opacity: 1,
+                        scale: 1.7,
+                    }}
+                    animate={{
+                        x: initialX + offsetX,
+                        y: initialY + offsetY,
+                        opacity: 0,
+                        scale: 0.5,
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay,
+                        ease: "easeOut",
+                    }}
+                    onAnimationComplete={() =>
+                        setParticles((prev) => prev.filter((p) => p.id !== id))
+                    }
+                    className="absolute text-xl"
+                >
+                    {emoji}
+                </motion.span>
+            ))}
         </div>
     )
 }
@@ -174,10 +162,11 @@ export function GetStarted(): JSX.Element {
                             >
                                 {/* Rainbow ring layer */}
                                 <span
-                                    className={`absolute inset-0 z-[-2] overflow-visible rounded-full ${isReducedMotion
+                                    className={`absolute inset-0 z-[-2] overflow-visible rounded-full ${
+                                        isReducedMotion
                                             ? ""
                                             : "group-hover:rainbow-animate rainbow-ring"
-                                        }`}
+                                    }`}
                                 />
                                 {/* Emoji particles behind text */}
                                 {hovered && !isReducedMotion && (

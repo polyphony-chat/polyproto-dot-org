@@ -1,41 +1,67 @@
+[![FAQ-shield]][FAQ]
+
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-### Installation
+## Installation
 
+```bash
+yarn
 ```
-$ yarn
+
+### Pre-commit Hooks
+
+This project uses pre-commit hooks to ensure code quality and uniform formatting. To set up
+pre-commit hooks:
+
+1. Install pre-commit:
+
+    ```bash
+    pip install pre-commit
+    ```
+
+2. Install prettier and dev-dependencies:
+
+    ```bash
+    yarn install
+    ```
+
+3. Install the git hooks:
+
+    ```bash
+    pre-commit install
+    ```
+
+The pre-commit hooks will automatically:
+
+- Format Markdown and MDX files using Prettier
+- Lint Markdown files using markdownlint
+- Check for common issues like trailing whitespace and file endings
+
+You can manually run the checks on all files:
+
+```bash
+pre-commit run --all-files
 ```
 
 ### Local Development
 
-```
-$ yarn start
+```bash
+yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server and opens up a browser window. Most changes are
+reflected live without having to restart the server.
 
 ### Build
 
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+yarn build
 ```
 
-Not using SSH:
+This command generates static content into the `build` directory and can be served using any static
+contents hosting service.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+[FAQ-shield]: https://img.shields.io/badge/Frequently_Asked_Questions_(FAQ)-ff62bd
+[FAQ]: https://github.com/polyphony-chat/.github/blob/main/FAQ.md

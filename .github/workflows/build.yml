@@ -1,4 +1,4 @@
-name: Build and run yarn project
+name: Lint, Build, Smoketest Run
 
 on:
     push:
@@ -8,10 +8,15 @@ on:
         branches:
             - "*"
 
-jobs:
-    build-and-run:
-        runs-on: ubuntu-latest
+# Auto-abort duplicate jobs (e.g. job being triggered again on push to open PR)
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 
+jobs:
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -25,8 +30,34 @@ jobs:
             - name: Install dependencies
               run: yarn install --frozen-lockfile
 
-            - name: Prettier check
-              run: yarn add --dev --exact prettier && yarn exec prettier . --write
+            - name: Setup Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.13"
+
+            - name: Install pre-commit
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install pre-commit
+
+            - name: Run pre-commit
+              run: pre-commit run --all-files
+
+    build-and-run:
+        name: Build and Run
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: "yarn"
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
             - name: Build project
               run: yarn build

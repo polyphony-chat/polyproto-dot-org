@@ -1,7 +1,12 @@
 {
     "languageToolLinter.languageTool.ignoredWordsInWorkspace": [
+        "hkdf",
+        "hpke",
+        "megolm",
         "polyproto-auth",
         "polyproto-chat",
+        "polyproto-core",
         "polyproto-mls"
-    ]
+    ],
+    "languageToolLinter.languageTool.disabledRules": "UPPERCASE_SENTENCE_START"
 }
