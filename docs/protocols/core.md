@@ -8,7 +8,7 @@ title: polyproto Core Protocol Specification
 
 **Namespace:** `core`
 
-**Version:** `v1.0-beta.1`
+**Version:** `v1.0-beta.2`
 
 **Base Path:** `/.p2/core/v1/`
 
