@@ -21,6 +21,12 @@
     margin-left: 1rem;
 }
 
+.markdown ol {
+    list-style-type: decimal;
+    list-style-position: outside;
+    margin-left: 1rem
+}
+
 .markdown {
     content-visibility: auto
 }
