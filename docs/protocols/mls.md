@@ -1,5 +1,12 @@
 # polyproto-mls Extension Specification
 
+:::danger
+
+This specification document is in an early alpha phase. It is still extremely incomplete, open for
+all of your thoughts and feedback (as it will always be!) and things are still subject to change.
+
+:::
+
 **Namespace:** `mls`
 
 **Version:** `v1.0-alpha.2`
