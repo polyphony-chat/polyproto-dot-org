@@ -68,7 +68,6 @@ short) to
   is, for example, a chat application, a microblogging application or an image blogging application.
   Service extensions should be the core functionality that is universally needed to make an
   application function. In the case of a chat application, that might be:
-
     - Defining message group size granularity: Direct messages, Group messages, Guild-based messages
     - Defining what a room looks like
     - Defining the APIs and behaviors required to send and receive messages
@@ -87,7 +86,6 @@ short) to
   software package.
 
     Technological additions might be:
-
     - Defining APIs and behaviors needed to implement the MLS (Messaging Layer Security) Protocol
     - Defining APIs and behaviors needed to establish and maintain a WebSocket connection, and how
       to send/receive messages over this WebSocket connection.

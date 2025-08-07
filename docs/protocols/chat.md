@@ -2,10 +2,11 @@
 
 :::danger
 
-This specification document is wildly **incomplete and outdated**! It needs to be (and will be) reworked and does not
-represent the current state of polyproto-chat.
+This specification document is wildly **incomplete and outdated**! It needs to be (and will be)
+reworked and does not represent the current state of polyproto-chat.
 
-Please check out [the OpenAPI specification(s)](https://github.com/polyphony-chat/typespec-openapi/tree/main/build/3.1.0)
+Please check out
+[the OpenAPI specification(s)](https://github.com/polyphony-chat/typespec-openapi/tree/main/build/3.1.0)
 of polyproto-chat instead, as they provide a much better overview of currently thought-of APIs and
 behaviors.
 

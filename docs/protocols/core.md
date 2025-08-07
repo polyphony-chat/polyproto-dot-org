@@ -691,7 +691,8 @@ Heartbeat request events do not carry any data in their `d` payload.
 
 #### 3.2.4 Establishing a connection
 
-The following diagram illustrates the process of establishing a WebSocket connection, including authentication, error handling with close codes, heartbeat, and session resumption:
+The following diagram illustrates the process of establishing a WebSocket connection, including
+authentication, error handling with close codes, heartbeat, and session resumption:
 
 ```mermaid
 sequenceDiagram
@@ -736,7 +737,8 @@ opt Resume session
 end
 ```
 
-*Fig. X: Sequence diagram of WebSocket connection establishment, authentication, heartbeat, and error handling in polyproto.*
+_Fig. X: Sequence diagram of WebSocket connection establishment, authentication, heartbeat, and
+error handling in polyproto._
 
 #### 3.2.5 Closing a connection
 
@@ -2595,9 +2597,8 @@ Keys are unique in the actor-scoped service->service-provider table. Actors want
 two or more different implementations of the same service must select which service provider to use
 as a "primary service provider" for that service.
 
-If the actor is human, clients must not override the existing
-key-value pair silently. Instead, clients must either ask the actor to confirm the change or
-not change the key-value pair.
+If the actor is human, clients must not override the existing key-value pair silently. Instead,
+clients must either ask the actor to confirm the change or not change the key-value pair.
 
 Changing a primary service provider entry is considered a sensitive action and should require a
 second factor of authentication.
