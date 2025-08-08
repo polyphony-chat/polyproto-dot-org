@@ -15,7 +15,7 @@ commonly used acronym, MLS) integrates with polyproto. The basis of this documen
 
 ## 1. Cryptographic Suites
 
-This section lists pre-defined cryptographic suites that can be implemented by polyproto-mls
+This section lists predefined cryptographic suites that can be implemented by polyproto-mls
 compatible implementations.
 
 | Name        | Numeric Identifier (MLS Numeric Value) | Quantum-Secure? | Recommended? | Required? |
@@ -80,7 +80,7 @@ _[Source](https://messaginglayersecurity.rocks/mls-architecture/draft-ietf-mls-a
 
 ## 3. HTTP APIs
 
-polyproto-mls provides a set of versioned HTTP APIs, accessible via the `mls` namespace. The HTTP
+polyproto-mls provides a set of versioned HTTP APIs accessible via the `mls` namespace. The HTTP
 APIs provide functionality required by the MLS specification for polyproto-mls implementers to also
 be compliant MLS implementations.
 
