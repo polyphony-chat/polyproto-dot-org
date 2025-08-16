@@ -17,7 +17,7 @@ title: polyproto Core Protocol Specification
 :::warning
 
 The polyproto specification document is in an **early beta** phase. Please report any
-inconsistencies, missing or duplicate information and other mistakes at
+inconsistencies, missing or duplicate information, or other mistakes at
 [github.com/polyphony-chat/docs/issues](https://github.com/polyphony-chat/docs/issues).
 
 :::
@@ -27,13 +27,13 @@ specification.
 
 The polyproto protocol is a home-server-based identity federation protocol specification intended
 for use in applications where actor identity is needed. polyproto focuses on federated identity and
-does not specify any further application-specific features. It can be used standalone, as a method
+doesn't specify any further application-specific features. It can be used standalone, as a method
 of authenticating across many applications and services, or as a base for federated protocol
 extensions and application implementations. The use of cryptography—namely digital signatures and
-X.509 certificates—make polyproto identities verifiable and portable. polyproto empowers actors, as
-the home server can be changed at any time, without losing data or connections to other actors.
+X.509 certificates—makes polyproto identities verifiable and portable. polyproto empowers actors by
+letting them change their home server at any time without losing data or connections to other actors.
 
-This document is intended to be used as a starting point for developers wanting to develop software
+This document is intended as a starting point for developers wanting to develop software
 that can operate with other polyproto implementations.
 
 ## 1. Terminology used in this document
@@ -49,11 +49,11 @@ polyproto operates under the following trust assumptions:
 1. Users entrust their home server and its admins with data security and discretion on actions
    appearing as actor-performed, as, with most home server-based systems, it is possible for a home
    server to impersonate an actor in unencrypted communications.
-2. Impersonation _can_ be detected by users, as home servers never have access to private keys of
-   actors. To sign messages as an actor, a home server would have to use a different key pair.
+2. Users _can_ detect impersonation, as home servers never have access to actors' private keys
+   To sign messages as an actor, a home server would have to use a different key pair.
 3. Users only trust information that can be verified by cryptographic means. This includes verifying
    the identity of other actors and verifying the integrity of messages.
-4. In a federated context, users trust foreign servers with all unencrypted data they send to them.
+4. In a federated context, users trust foreign servers with all unencrypted data they send to those servers.
 5. Foreign servers cannot impersonate users without immediate detection. Outsiders, meaning foreign
    servers and other actors, are unable to produce signatures that have a cryptographic connection
    to the actors' home server. This is assuming correct implementation of cryptographic standards,
@@ -88,7 +88,7 @@ host.
 :::note
 
 Consult the excerpt of this specification explaining what a "domain name" is, to avoid
-misunderstandings. You can find this excerpt [in the table of section #5](#def-domain-name).
+misunderstandings. You can find this excerpt [in the table in section #5](#def-domain-name).
 
 :::
 
@@ -112,8 +112,8 @@ ID-Certs managed by that server **if all the following conditions are met:**
 
 5. The ID-Cert received when querying `[actual domain name]/.p2/core/idcert/server` with an HTTP GET
    request must have a field "issuer" containing domain components (`dc`) that, when parsed,
-   **equal** the domain name of the _visible domain name_. If the domain components in this field do
-   not match the domain components of the _visible domain name_, the server hosted under the _actual
+   **equal** the domain name of the _visible domain name_. If the domain components in this field don't
+   match the domain components of the _visible domain name_, the server hosted under the _actual
    domain name_ must not be treated as a polyproto server for the _visible domain name_.
 
 Every polyproto home server must have a `.well-known` URI, accessible via an HTTP GET request.
@@ -185,12 +185,12 @@ depending on the specific event.
 | `d`   | JSON value | The event data associated with this payload.                        |
 | `s`¹  | uint64     | Sequence number of the event, used for guaranteed, ordered delivery |
 
-¹: This field is only received by clients and never sent to the server.
+¹: This field is received only by clients and never sent to the server.
 
 ##### 3.2.1.1 Namespaces `n`
 
 The `n` field in a gateway event payload indicates the namespace context for the payload. You can
-read more about namespaces in [section 8.2](#82-namespaces). messages Every namespace may define its
+read more about namespaces in [section 8.2](#82-namespaces). Every namespace can define its
 own set of opcodes and event names.
 
 The namespace context must be known to the entity receiving the payload, as it is crucial for
@@ -217,8 +217,8 @@ The following opcodes are defined by the `core` namespace:
 
 ##### 3.2.1.3 Sequence numbers `s`
 
-Sequence numbers are unsigned integers with a 64 bit length. In the rare event that this integer
-should overflow, the server must close the connection to the client and prompt the client to
+Sequence numbers are unsigned integers with a 64-bit length. In the rare event that this integer
+overflows, the server must close the connection to the client and prompt the client to
 initiate a new, non-resumed gateway connection.
 
 The sequence number increases by one for every gateway message sent by the server. The client must
@@ -238,7 +238,7 @@ by sending a heartbeat ACK event back to the client.
 Servers must account for the time it takes for the client to send the heartbeat event.
 
 Before closing a connection due to a missed heartbeat, the server should request a heartbeat event
-from the client by sending a heartbeat request event to the client. If the client is not responding
+from the client by sending a heartbeat request event to the client. If the client doesn't respond
 within a reasonable time frame, the server should close the gateway connection with an appropriate
 [close code](#325-closing-a-connection).
 
@@ -437,7 +437,7 @@ ID-Certs. This event is only sent by servers if an
 | Field          | Type   | Description                                                                                                                                                                                                                               |
 | -------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `serial`       | uint64 | The serial number of the invalidated ID-Cert                                                                                                                                                                                              |
-| `invalidSince` | uint64 | UNIX timestamp of the point in time where this ID-Cert became invalid on                                                                                                                                                                  |
+| `invalidSince` | uint64 | UNIX timestamp of the point in time when this ID-Cert became invalid                                                                                                                                                                      |
 | `signature`    | string | Signature of a string concatenation of the `invalidSince` timestamp and the `serial` number, in that order. Clients must verify this signature, verifying that the signature was generated by the private key of the revoked certificate. |
 
 ##### 3.2.3.6 "Resume" event and "resumed" event
@@ -508,13 +508,13 @@ where $s_{resume}$ is equal to the parameter `s` supplied by the client in the r
 
 A set of "relevant events" is a set of events which meet both of the following conditions:
 
-1. Each event in the set is intended to be received by the client
+1. Each event in the set is intended to be received by the client.
 2. The set must contain the lowest possible amount of events necessary for the client to be informed
    about everything that happened while they were disconnected.
 
 :::tip[Example for condition #2]
 
-Assume, that an event "total number of messages sent" exists. The value of this event payload is a
+Assume that a "total number of messages sent" event exists. The value of this event payload is a
 number, representing the total number of messages sent on the entire server. Under normal
 circumstances, each client receives this imaginary event every time this state changes.
 
@@ -530,10 +530,10 @@ the validity or state of other events.
 
 :::
 
-Servers may reject a clients' wish to resume, if
+Servers may reject a clients' wish to resume under any of the following conditions:
 
 - The number of events that would need to be replayed is too high for the server to process.
-- The client is not eligible to resume and must start a new session instead.
+- The client isn't eligible to resume and must start a new session instead.
 
 In this case, the request to resume is met with an appropriate
 [close code](#325-closing-a-connection) (ex.: `4010`) by the server and the connection is
@@ -655,7 +655,7 @@ A heartbeat ACK contains events that the client has re-requested as part of thei
 
 :::
 
-As such, the field `d` in a heartbeat ack may be empty, but never not present. The `d` field
+As such, the field `d` in a heartbeat ack may be empty, but it must always be present. The `d` field
 contains an array of other gateway events. Heartbeat ACK payloads must not be present in this array,
 making recursion impossible.
 
@@ -674,7 +674,7 @@ been fulfilled. Of course, the client should not send the same heartbeat twice.
 
 :::
 
-Heartbeat request events do not carry any data in their `d` payload.
+Heartbeat request events don't carry any data in their `d` payload.
 
 :::tip[Example heartbeat request event payload]
 
@@ -772,7 +772,7 @@ of [sequence numbers](#3213-sequence-numbers-s) and [heartbeats](#322-heartbeats
 
 ??? question "Doesn't TCP already cover this?"
 
-    While TCP ensures reliable delivery of data during an active connection, it does not retain
+    While TCP ensures reliable delivery of data during an active connection, it doesn't retain
     knowledge of application-layer messages if a disconnect occurs. In such cases, the application
     must implement its own mechanisms to track which messages were successfully received.
 
@@ -816,7 +816,7 @@ implementations or extensions of polyproto.
 Due to the intended use cases for retrieving events through REST rather than WebSockets, this
 endpoint is not a long-polling endpoint.
 
-There are three intended, main modes for retrieving events in polyproto
+There are three intended, main modes for retrieving events in polyproto:
 
 1. Keep a constant WebSocket connection whenever possible.
 2. Keep a semi-constant WebSocket connection, perhaps connecting every x minutes for a set period of
@@ -844,7 +844,7 @@ Protocol in polyproto should happen on a best-effort basis.
 
 :::tip[Explanation]
 
-We do not mandate that access to a polyproto server must be possible over both IPv4 and IPv6 as most
+We do not mandate that access to a polyproto server must be possible over both IPv4 and IPv6, as most
 of the world is not sufficiently IPv6 capable. We do, however, mandate that software written to
 support polyproto must be capable of handling traffic over both IPv4 and IPv6, should both versions
 of the Internet Protocol be available to the software at runtime.
@@ -917,7 +917,7 @@ have one active session token at a time.
 
 :::info[About session tokens]
 
-Session tokens are used to authenticate a user over a longer period of time, instead of for example,
+Session tokens are used to authenticate a user over a longer period of time, instead of, for example,
 requiring the user to solve a challenge string every time they want to access a protected route.
 
 :::
@@ -1092,16 +1092,16 @@ context of a chat application) sent on the other server.
 
 :::note
 
-The above scenario is not unique to polyproto and rather a problem other federated
-services/protocols, like ActivityPub, have as well. There is no real solution to this problem.
+The above scenario is not unique to polyproto; other federated services/protocols, like
+ActivityPub, have this problem as well. There is no real solution to this problem.
 However, it can be mitigated a bit by making it more difficult for malicious home servers to do
 something like this without the actor noticing.
 
 :::
 
 Polyproto servers need to inform users of new sessions. This visibility hampers malicious home
-servers, but does not solve the issue of them being able to create federation tokens for servers the
-actor does not connect to. This is because, naturally, users cannot receive notifications without a
+servers, but doesn't solve the issue of them being able to create federation tokens for servers the
+actor doesn't connect to. This is because, naturally, users cannot receive notifications without a
 connection. Clients re-establishing server connections must be updated on any new sessions generated
 during their absence. The `NEW_SESSION` gateway event must be dispatched to all sessions, excluding
 the new session. The `NEW_SESSION` event's stored data can be accessed in the
@@ -1166,7 +1166,7 @@ identity key. It is an actor-generated CSR
 ([Certificate Signing Request](https://en.wikipedia.org/wiki/Certificate_signing_request)), signed
 by a home server, encompassing actor identity information and the client's public identity key.
 Clients can get an ID-Cert in return for a valid and well-formed CSR. Generating a new ID-Cert is
-considered a [sensitive action](#42-sensitive-actions) and therefore should require a second factor
+considered a [sensitive action](#42-sensitive-actions) and should therefore require a second factor
 of authentication.
 
 A CSR in the context of polyproto will be referred to as an ID-CSR. ID-CSRs are DER- or PEM-encoded
@@ -1253,7 +1253,7 @@ A `pDN` must meet all the following requirements:
   "common name" attribute must not be present.
 - Must have at least one domain component `dc`, specifying the domain name under which the home
   server can be reached. This includes the home server's top- and second-level domains, as well as
-  all other subdomains, if present. If the home server does not have a sub- or top-level domain, the
+  all other subdomains, if present. If the home server doesn't have a sub- or top-level domain, the
   `dc` fields for these components should be omitted.
 - If the `pDN` describes an actor, the `pDN` must include the `UID`
   ([OID](https://en.wikipedia.org/wiki/Object_identifier) 0.9.2342.19200300.100.1.1) **and**
@@ -1262,7 +1262,7 @@ A `pDN` must meet all the following requirements:
     - `UID` field must be equal to the federation ID of the actor, e.g.,
       `actor@domainname-of-home server.example.com`.
     - `uniqueIdentifier` field must be a [Session ID](#6113-session-ids).
-- Can have other attributes if the additional attributes do not conflict with the above
+- Can have other attributes if the additional attributes don't conflict with the above
   requirements. Additional attributes might be ignored by other home servers and other clients
   unless specified otherwise in a polyproto extension. Additional attributes not part of a polyproto
   extension must be non-critical X.509 extensions.
@@ -1271,11 +1271,11 @@ A `pDN` must meet all the following requirements:
 
 The following constraints must be met by ID-Certs:
 
-- If the ID-Cert is a root certificate
+- If the ID-Cert is a root certificate:
     - It must have the `CA` flag set to `true`. The path length constraint must be present and set
       to `0`.
     - It must have the `keyCertSign` key usage flag set to `true`.
-- If the ID-Cert is an actor certificate
+- If the ID-Cert is an actor certificate:
     - It must have the `CA` flag set to `false` or omitted.
     - It must have the `keyCertSign` key usage flag set to `false` or omitted.
     - It must have the `digitalSignature` key usage flag OR `contentCommitment` flags set to `true`.
@@ -1292,7 +1292,7 @@ The session ID is an [`ASN.1`](https://en.wikipedia.org/wiki/ASN.1)
 It is used to uniquely identify a session. The session ID must be unique for each certificate issued
 to that actor. A session ID can be reused if the session belonging to that session ID has become
 invalid. Session ID reuse in this case also applies when a different ID-Cert wants to use the same
-session ID, provided that the session ID is not currently in use. If the session ID is currently in
+session ID, provided that the session ID isn't currently in use. If the session ID is currently in
 use, the actor requesting the ID-Cert must select a different session ID, as session IDs must not be
 overridden silently.
 
@@ -1324,7 +1324,7 @@ malicious server cannot generate an identity key pair for Alice, which is signed
 
 #### 6.1.3 Key rotation
 
-A session can choose to regenerate their ID-Cert at any time. This is done by taking an identity key
+A session can choose to regenerate its ID-Cert at any time. This is done by taking an identity key
 pair, using the private key to generate a new CSR, and sending the new Certificate Signing Request
 to the home server. The home server will then generate the new ID-Cert, given that the CSR is valid.
 Actors can only regenerate ID-Certs for their current session, identifiedby their session ID and
@@ -1346,7 +1346,7 @@ The lifetime of an actor ID-Cert should be limited to a maximum of 60 days. This
 even in a worst-case scenario, a compromised ID-Cert can only be used for a limited amount of time.
 "Renewing" an ID-Cert consists of:
 
-1. Revoking the old ID-Cert
+1. Revoking the old ID-Cert.
 2. Requesting a new ID-Cert with the same [session ID](#6113-session-ids) as the old ID-Cert.
 
 A client that has this second factor of authentication stored should renew the ID-Cert of the
@@ -1395,7 +1395,7 @@ demand while introducing potential privacy concerns.
 
 polyproto inherently mitigates some of the possible misuse of a revoked certificate, as the validity
 of a certificate is usually checked by many parties. In particular, the revocation process is
-initiated by the actor themselves, the actor already lets all servers they are connected to know
+initiated by the actor themselves, and the actor already informs all servers they are connected to
 that the certificate in question is no longer valid.
 
 polyproto does not require the use of CRLs or OCSP.
@@ -1406,8 +1406,8 @@ An ID-Cert can be revoked by the home server or the actor at any time. This can 
 reasons, such as
 
 - a suspected leak of the private identity key
-- the changing of an actor's federation identifier.
-- the changing of an actor's federation identifier.
+- the changing of an actor's federation identifier
+- the changing of an actor's federation identifier
 - keeping the number of ID-Certs associated with an actor within a desired boundary
 
 When an ID-Cert is revoked, the server must revoke the session associated with the revoked ID-Cert.
@@ -1467,7 +1467,7 @@ the message contents.
 
 :::info
 
-polyproto does not define what messages themselves look like, apart from this hard requirement. The
+polyproto doesn't define what messages themselves look like, apart from this hard requirement. The
 format of a message is up to polyproto extensions and implementations to define.
 
 :::
@@ -1558,7 +1558,7 @@ when viewed through a client application.
 
 ### 6.3 Private key loss prevention and private key recovery
 
-As described in previous sections, actors must hold on to their past identity key pairs, should they
+As described in previous sections, actors must hold on to their past identity key pairs, in case they
 want or need to migrate their account.
 
 Home servers must offer a way for actors to upload and recover their private identity keys while not
@@ -1580,7 +1580,7 @@ The APIs for managing encrypted private identity keys are documented in the
 
 ::::tip
 
-Actors can make use of the [migration APIs](#7-migrations) to reduce the number of ID-Certs/keys
+Actors can use the [migration APIs](#7-migrations) to reduce the number of ID-Certs/keys
 that they must hold on to to migrate their account in the future.
 
 For example, if an actor currently has messages signed with 20 different ID-Certs but only uses 2
@@ -1664,17 +1664,17 @@ should request Alice's ID-Cert from that server first, instead of from `server-a
 :::note[Further notes on why we consider this cached distribution process a good idea]
 
 Bob's client could request Alice's public identity key from Server A, instead of Server B. However,
-this is discouraged, as it
+this is discouraged, because:
 
-- Generates unnecessary load on Server A; Doing it this way distributes the load of public identity
+- It generates unnecessary load on Server A. Doing it this way distributes the load of public identity
   key requests more fairly, as the server that the message was sent on is the one that has to
   process the bulk of public identity certificate requests.
-- Would expose unnecessary metadata to Server A; Server A does not need to know who exactly Alice is
+- It would expose unnecessary metadata to Server A. Server A doesn't need to know who exactly Alice is
   talking to, and when. Only Server B, Alice, and Bob need to know this information. Always
   requesting the public identity key from Server A might expose this information to Server A.
 
-Clients should only use Server A as a fallback for public identity key verification if Server B does
-not respond to the request for Alice's public identity key, or if the verification fails with the
+Clients should only use Server A as a fallback for public identity key verification if Server B
+doesn't respond to the request for Alice's public identity key, or if the verification fails with the
 public identity key from Server B. Security considerations listed in this section of the protocol
 definition ensure that this cached distribution process is safe and trustworthy.
 
@@ -1695,7 +1695,7 @@ by. You can read more on that in
 
 Suppose that an actor's private identity key is compromised. The actor notices this and revokes
 their ID-Cert. If the TTL of cached ID-Certs is too long, the compromised ID-Cert might still be
-used for signature verification for a long amount of time, even after the ID-Cert has been revoked.
+used for signature verification for a long time, even after the ID-Cert has been revoked.
 This is a problem in the following hypothetical scenario with the malicious actor "Eve" and the
 victim "Alice":
 
@@ -2122,7 +2122,7 @@ correspond to a specific ID-Cert. The API routes for re-signing messages are doc
 
 #### 7.2.1 Message batches
 
-Messages that have not yet been re-signed are being delivered to an actor in batches. A batch is a
+Messages that have not yet been re-signed are delivered to an actor in batches. A batch is a
 JSON object, representing messages sent using the same ID-Cert. An exemplary array of message
 batches, as returned by the server, might look as follows:
 
@@ -2263,7 +2263,7 @@ anymore.
 Resource addressing with relative roots aids in preventing this issue. Instead of referring to the
 absolute URL of the resource, the server processing the resource generates a unique identifier. This
 identifier can be used to retrieve the resource from the server. Most importantly, this identifier
-does not change when the resource is moved to another server. If the base domain of the new server
+doesn't change when the resource is moved to another server. If the base domain of the new server
 is known, the identifier can be used to retrieve the resource from the new server. The "relative
 root" is the base domain of the server, which is used to retrieve the resource.
 
@@ -2271,7 +2271,7 @@ The uniqueness constraint of the identifier is important. If a collision occurs 
 the resource to another server, the resource cannot be migrated in a way that preserves the
 references to it. One way to ensure the uniqueness of the identifier is to use a hash function on
 the resource itself. Combining this hash with a cryptographically strong nonce, then hashing the
-result of concatenating the nonce and the hash of the resource should yield a unique identifier.
+result of concatenating the nonce and the hash of the resource, should yield a unique identifier.
 
 The URI for resource addressing with relative roots is formatted as follows:
 
@@ -2293,7 +2293,7 @@ API route is accessed. Clients should expect finding servers not implementing th
 
 #### 7.3.2 polyproto export/import format
 
-Data exports and -imports must use the polyproto export/import format. Home servers are required to
+Data exports and imports must use the polyproto export/import format. Home servers are required to
 support this format when actors perform data exports and imports.
 
 The data is a [gzipped](https://en.wikipedia.org/wiki/Gzip)
@@ -2406,7 +2406,7 @@ P2 extensions _should_ be either of the following:
     - A federated chat application
     - A federated social media platform
 
-A good P2 extension should never be both at the same time. If a P2 extension is both a major
+A good P2 extension should **never** be both at the same time. If a P2 extension is both a major
 technological addition and a document describing a particular application use case, it should likely
 be split into two separate extensions.
 
@@ -2416,7 +2416,7 @@ comprehensive set of features.
 
 :::note
 
-If you are, say, developing a polyproto server implementation with a feature that is not part of the
+If you are, say, developing a polyproto server implementation with a feature that isn't part of the
 default polyproto specification, you do not have to create a P2 extension for this feature. P2
 extensions are useful for defining interoperable services, which can be implemented by a variety of
 servers and clients.
@@ -2502,8 +2502,8 @@ officially endorsed P2 extensions.
 
 :::tip[Example]
 
-Say, you are developing a social chat platform using polyproto. In this example, you would like your
-chat platform to have a feature, which is not part of the officially endorsed `polyproto-chat`
+Say you're developing a social chat platform using polyproto. In this example, you would like your
+chat platform to have a feature that isn't part of the officially endorsed `polyproto-chat`
 extension. Instead of developing a new extension from scratch, your chat extension should likely
 depend on `polyproto-chat` and define only this new feature as part of your own extension.
 
@@ -2597,8 +2597,9 @@ Keys are unique in the actor-scoped service->service-provider table. Actors want
 two or more different implementations of the same service must select which service provider to use
 as a "primary service provider" for that service.
 
-If the actor is human, clients must not override the existing key-value pair silently. Instead,
-clients must either ask the actor to confirm the change or not change the key-value pair.
+If the actor is human or otherwise sentient, clients must not override the existing key-value pair
+silently. Instead, clients must either ask the actor to confirm the change or not change the
+key-value pair.
 
 Changing a primary service provider entry is considered a sensitive action and should require a
 second factor of authentication.

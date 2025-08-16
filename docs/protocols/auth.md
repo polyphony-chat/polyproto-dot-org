@@ -23,7 +23,7 @@ needed/#post-create-identity) documentation.
 
 To register, the client sends the necessary information to their home server. The server verifies
 the data, checks username availability, and responds with HTTP 201 and the new identity's federation
-ID, if successful. However, a session token is not provided until the actor authenticates a client,
+ID, if successful. However, a session token isn't provided until the actor authenticates a client,
 as detailed in section [1.2](#12-authenticating-a-new-client-on-a-polyproto-home-server).
 
 ```mermaid
@@ -93,12 +93,12 @@ If the verification is successful, the foreign server can issue a session token 
 existing identity.
 
 Alice's client sends a request to Server B for a challenge string, telling Server B the session ID
-they are communicating from in the process. Upon receiving a response, Alice signs this challenge
-string with the correct private key. They then send the signature to Server B. Server B can now
+they are communicating from in the process. When she receives a response, Alice signs this challenge
+string with the correct private key, then sends the signature to Server B. Server B can now
 verify that it was actually Alice who signed the string, and not a malicious outsider. Server B does
 this by requesting Alice's ID-Cert, specifically the ID-Cert matching the session ID Alice
-identified with to Server B. If all goes well, server B will send a newly generated session token
-back to Alice's client. Alice's client can then authenticate with server B by using this token.
+identified with to Server B. If all goes well, server B then sends a newly generated session token
+back to Alice's client, and Alice's client can use this token to authenticate with server B.
 
 ```mermaid
 sequenceDiagram
@@ -119,9 +119,9 @@ sb->>a: Session token, optional payload
 
 Fig. 3: Sequence diagram of a successful identity verification.
 
-In the diagram, Alice's "optional payload" is extra data that might be requested by servers. This is
+In the diagram, Alice's "optional payload" is extra data that some servers might request. This is
 useful when using a single identity across various polyproto implementations, due to differing
-information needs. The payload is signed with the actor's private identity key.
+informational needs. The payload is signed with the actor's private identity key.
 
 Likewise, the "optional payload" sent by the server in the above diagram can be used by
 implementations to send additional information to the client. An example might be initial account
@@ -133,12 +133,12 @@ information.
     "https://example.com/chat". When signing up for this service, she didn't need to provide any
     additional information on registration. However, when she wants to actor her existing identity
     to sign up for "https://example.com/social", she is asked to provide her email address, which
-    she can provide as the "optional payload". The server can then store the email address in its'
+    she can provide as the "optional payload". The server can then store the email address in its
     database, associate it with Alice's identity, and let Alice log in with her existing identity.
 
-If Alice's session token expires, they can repeat this process of requesting a challenge string and,
+If Alice's session token expires, she can repeat this process of requesting a challenge string and,
 together with her ID-Cert, exchange it for a session token. However, if Alice wants to access this
-third party account from a completely new device, they will have to perform the steps described in
+third party account from a completely new device, she'll have to perform the steps described in
 section [1.2](#12-authenticating-a-new-client-on-a-polyproto-home-server) to obtain a valid ID-Cert
 for that session.
 
